@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
@@ -25,604 +24,602 @@
     --border-gold: rgba(184,150,90,0.25);
   }
 
-- { margin: 0; padding: 0; box-sizing: border-box; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
 
-body {
-background: var(–white);
-color: var(–text);
-font-family: ‘Noto Sans JP’, sans-serif;
-font-weight: 300;
-font-size: 14px;
-line-height: 1.8;
-max-width: 480px;
-margin: 0 auto;
--webkit-font-smoothing: antialiased;
-}
-
-/* ── HERO ── */
-.hero {
-min-height: 100svh;
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-text-align: center;
-padding: 60px 20px 70px;
-background:
-radial-gradient(ellipse at 60% 0%, rgba(212,176,122,0.12) 0%, transparent 55%),
-radial-gradient(ellipse at 20% 100%, rgba(169,155,199,0.18) 0%, transparent 55%),
-linear-gradient(160deg, #FDFCFF 0%, #F5F2FB 50%, #FBF8F2 100%);
-position: relative;
-overflow: hidden;
-}
-
-.hero::before {
-content: ‘’;
-position: absolute;
-top: -60px; right: -60px;
-width: 300px; height: 300px;
-border-radius: 50%;
-background: radial-gradient(circle, rgba(212,176,122,0.08) 0%, transparent 70%);
-pointer-events: none;
-}
-
-.hero::after {
-content: ‘’;
-position: absolute;
-bottom: -80px; left: -40px;
-width: 360px; height: 360px;
-border-radius: 50%;
-background: radial-gradient(circle, rgba(139,123,174,0.1) 0%, transparent 70%);
-pointer-events: none;
-}
-
-.hero-badge {
-font-family: ‘Cormorant Garamond’, serif;
-font-size: 9px;
-letter-spacing: 0.38em;
-color: var(–purple-light);
-text-transform: uppercase;
-margin-bottom: 28px;
-opacity: 0;
-animation: fadeUp 0.9s 0.2s forwards;
-}
-
-.hero-logo {
-font-family: ‘Cormorant Garamond’, serif;
-font-size: 58px;
-font-weight: 300;
-letter-spacing: 0.14em;
-color: var(–text);
-line-height: 1;
-margin-bottom: 6px;
-opacity: 0;
-animation: fadeUp 0.9s 0.4s forwards;
-}
-
-.hero-logo span { color: var(–gold); }
-
-.hero-sub {
-font-size: 11px;
-letter-spacing: 0.3em;
-color: var(–text-dim);
-margin-bottom: 28px;
-opacity: 0;
-animation: fadeUp 0.9s 0.55s forwards;
-}
-
-.hero-divider {
-display: flex;
-align-items: center;
-gap: 14px;
-margin-bottom: 20px;
-opacity: 0;
-animation: fadeUp 0.9s 0.65s forwards;
-}
-
-.hero-divider::before,
-.hero-divider::after {
-content: ‘’;
-width: 40px;
-height: 1px;
-background: linear-gradient(to right, transparent, var(–gold-pale));
-}
-
-.hero-divider::after {
-background: linear-gradient(to left, transparent, var(–gold-pale));
-}
-
-.hero-tagline {
-font-family: ‘Cormorant Garamond’, serif;
-font-style: italic;
-font-size: 17px;
-color: var(–purple);
-letter-spacing: 0.08em;
-margin-bottom: 56px;
-opacity: 0;
-animation: fadeUp 0.9s 0.7s forwards;
-}
-
-.hero-scroll {
-display: flex;
-flex-direction: column;
-align-items: center;
-gap: 6px;
-opacity: 0;
-animation: fadeUp 0.9s 1s forwards;
-}
-
-.hero-scroll span {
-font-size: 8px;
-letter-spacing: 0.3em;
-color: var(–text-dim);
-text-transform: uppercase;
-}
-
-.hero-scroll-line {
-width: 1px;
-height: 40px;
-background: linear-gradient(to bottom, var(–gold-light), transparent);
-animation: lineDown 1.6s 1.5s ease-in-out infinite;
-}
-
-@keyframes lineDown {
-0%   { transform: scaleY(0); transform-origin: top; }
-50%  { transform: scaleY(1); transform-origin: top; }
-51%  { transform-origin: bottom; }
-100% { transform: scaleY(0); transform-origin: bottom; }
-}
-
-/* ── TOC ── */
-.toc {
-background: var(–cream);
-border-top: 1px solid var(–border-gold);
-border-bottom: 1px solid var(–border-gold);
-padding: 28px 20px;
-}
-
-.toc-title {
-font-family: ‘Cormorant Garamond’, serif;
-font-size: 9px;
-letter-spacing: 0.4em;
-color: var(–gold);
-text-transform: uppercase;
-margin-bottom: 16px;
-}
-
-.toc-list { display: flex; flex-direction: column; }
-
-.toc-item {
-color: var(–text-mid);
-font-size: 13px;
-text-decoration: none;
-padding: 9px 0;
-border-bottom: 1px solid var(–border);
-display: flex;
-align-items: center;
-gap: 10px;
-transition: color 0.2s;
-}
-
-.toc-item:last-child { border-bottom: none; }
-.toc-item:active { color: var(–purple); }
-
-.toc-num {
-font-family: ‘Cormorant Garamond’, serif;
-font-size: 11px;
-color: var(–gold);
-min-width: 20px;
-flex-shrink: 0;
-}
-
-/* ── SECTION ── */
-section {
-padding: 52px 20px;
-border-bottom: 1px solid var(–border);
-}
-
-section:nth-child(even) { background: var(–purple-soft); }
-
-.section-num {
-font-family: ‘Cormorant Garamond’, serif;
-font-size: 64px;
-font-weight: 300;
-color: rgba(139,123,174,0.07);
-line-height: 1;
-margin-bottom: -18px;
-}
-
-.section-title {
-font-family: ‘Cormorant Garamond’, serif;
-font-size: 26px;
-font-weight: 400;
-color: var(–text);
-letter-spacing: 0.06em;
-margin-bottom: 24px;
-padding-bottom: 14px;
-position: relative;
-}
-
-.section-title::after {
-content: ‘’;
-position: absolute;
-bottom: 0; left: 0;
-width: 100%;
-height: 1px;
-background: linear-gradient(to right, var(–gold-light), var(–purple-pale), transparent);
-}
-
-.sub-title {
-font-size: 9px;
-font-weight: 500;
-color: var(–purple);
-letter-spacing: 0.22em;
-text-transform: uppercase;
-margin: 28px 0 12px;
-display: flex;
-align-items: center;
-gap: 8px;
-}
-
-.sub-title::before {
-content: ‘’;
-width: 16px;
-height: 1px;
-background: var(–gold-light);
-flex-shrink: 0;
-}
-
-p {
-font-size: 13px;
-color: var(–text-mid);
-line-height: 1.9;
-margin-bottom: 14px;
-}
-
-/* ── ROW CARDS ── */
-.row-cards { margin: 8px 0 20px; }
-
-.row-card {
-border-bottom: 1px solid var(–border);
-padding: 12px 0;
-}
-
-.row-card:first-child { border-top: 1px solid var(–border); }
-
-.row-label {
-font-size: 10px;
-font-weight: 500;
-color: var(–purple);
-letter-spacing: 0.12em;
-margin-bottom: 3px;
-}
-
-.row-value {
-font-size: 13px;
-color: var(–text);
-line-height: 1.7;
-}
-
-.row-sub {
-font-size: 12px;
-color: var(–text-dim);
-line-height: 1.7;
-margin-top: 2px;
-}
-
-/* ── BADGE ── */
-.cat-badge {
-display: inline-flex;
-align-items: center;
-background: var(–purple-faint);
-border: 1px solid var(–purple-pale);
-border-radius: 2px;
-padding: 4px 12px;
-font-size: 11px;
-color: var(–purple);
-letter-spacing: 0.08em;
-margin-bottom: 10px;
-}
-
-.cat-badge.gold {
-background: var(–cream);
-border-color: var(–border-gold);
-color: var(–gold);
-}
-
-/* ── ING CARDS ── */
-.ing-card {
-border: 1px solid var(–border);
-border-radius: 4px;
-overflow: hidden;
-margin-bottom: 8px;
-background: var(–white);
-}
-
-.ing-card-head {
-display: flex;
-align-items: baseline;
-gap: 10px;
-background: linear-gradient(135deg, var(–purple-faint), var(–cream));
-padding: 10px 14px;
-}
-
-.ing-name {
-font-size: 13px;
-font-weight: 500;
-color: var(–text);
-}
-
-.ing-amount {
-font-size: 12px;
-color: var(–gold);
-flex-shrink: 0;
-}
-
-.ing-desc {
-font-size: 12px;
-color: var(–text-mid);
-line-height: 1.75;
-padding: 10px 14px;
-}
-
-/* ── COMPARISON CARDS ── */
-.comp-item {
-border: 1px solid var(–border);
-border-radius: 4px;
-overflow: hidden;
-margin-bottom: 8px;
-}
-
-.comp-label {
-font-size: 10px;
-font-weight: 500;
-color: var(–text-dim);
-letter-spacing: 0.1em;
-background: rgba(255,255,255,0.7);
-padding: 7px 14px;
-border-bottom: 1px solid var(–border);
-}
-
-.comp-row { display: flex; }
-
-.comp-col {
-flex: 1;
-padding: 10px 12px;
-font-size: 12px;
-line-height: 1.6;
-border-right: 1px solid var(–border);
-}
-
-.comp-col:last-child { border-right: none; }
-
-.comp-col-head {
-font-size: 9px;
-font-weight: 500;
-letter-spacing: 0.1em;
-margin-bottom: 4px;
-}
-
-.comp-col.ours { background: rgba(212,205,234,0.1); }
-.comp-col.ours .comp-col-head { color: var(–purple); }
-.comp-col.ours .comp-col-val { color: var(–text); }
-.comp-col.theirs .comp-col-head { color: var(–text-dim); }
-.comp-col.theirs .comp-col-val { color: var(–text-dim); }
-
-/* ── LISTS ── */
-.list { margin: 0 0 20px; }
-
-.list-item {
-font-size: 13px;
-color: var(–text-mid);
-padding: 8px 0 8px 18px;
-position: relative;
-border-bottom: 1px solid var(–border);
-line-height: 1.7;
-}
-
-.list-item:last-child { border-bottom: none; }
-
-.list-item::before {
-content: ‘—’;
-position: absolute;
-left: 0;
-color: var(–gold-light);
-font-family: ‘Cormorant Garamond’, serif;
-}
-
-/* ── NOTE ── */
-.note {
-background: var(–purple-faint);
-border-left: 2px solid var(–purple-pale);
-padding: 12px 14px;
-margin: 14px 0;
-font-size: 12px;
-color: var(–text-mid);
-line-height: 1.75;
-border-radius: 0 2px 2px 0;
-}
-
-/* ── FAQ ── */
-.faq-item {
-border: 1px solid var(–border);
-border-radius: 4px;
-margin-bottom: 8px;
-overflow: hidden;
-background: var(–white);
-}
-
-.faq-q {
-padding: 14px 44px 14px 14px;
-font-size: 13px;
-color: var(–text);
-cursor: pointer;
-display: flex;
-align-items: flex-start;
-gap: 10px;
-position: relative;
-user-select: none;
--webkit-tap-highlight-color: transparent;
-transition: background 0.2s;
-}
-
-.faq-q:active { background: var(–purple-soft); }
-
-.faq-q::after {
-content: ‘+’;
-position: absolute;
-right: 14px;
-top: 50%;
-transform: translateY(-50%);
-color: var(–purple-light);
-font-family: ‘Cormorant Garamond’, serif;
-font-size: 22px;
-line-height: 1;
-transition: transform 0.25s;
-}
-
-.faq-item.open .faq-q::after { transform: translateY(-50%) rotate(45deg); }
-
-.faq-qlabel {
-color: var(–gold);
-font-family: ‘Cormorant Garamond’, serif;
-font-size: 17px;
-line-height: 1.1;
-flex-shrink: 0;
-}
-
-.faq-a {
-display: none;
-padding: 12px 14px 14px 38px;
-font-size: 12px;
-color: var(–text-mid);
-line-height: 1.85;
-border-top: 1px solid var(–border);
-background: var(–purple-soft);
-}
-
-.faq-item.open .faq-a { display: block; }
-
-/* ── TIMING ── */
-.timing-card {
-background: var(–white);
-border: 1px solid var(–border);
-border-left: 3px solid var(–gold-light);
-border-radius: 2px;
-padding: 16px;
-margin-bottom: 10px;
-}
-
-.timing-tag {
-font-family: ‘Cormorant Garamond’, serif;
-font-size: 9px;
-letter-spacing: 0.3em;
-color: var(–gold);
-text-transform: uppercase;
-margin-bottom: 4px;
-}
-
-.timing-main {
-font-size: 14px;
-color: var(–text);
-font-weight: 500;
-margin-bottom: 4px;
-}
-
-.timing-reason {
-font-size: 12px;
-color: var(–text-dim);
-line-height: 1.7;
-}
-
-/* ── COLOPHON ── */
-.colophon {
-background: linear-gradient(160deg, var(–purple-soft) 0%, var(–cream) 100%);
-text-align: center;
-padding: 52px 20px;
-border-top: 1px solid var(–border-gold);
-}
-
-.colophon-deco {
-color: var(–gold-pale);
-font-family: ‘Cormorant Garamond’, serif;
-font-size: 14px;
-margin-bottom: 16px;
-}
-
-.colophon-logo {
-font-family: ‘Cormorant Garamond’, serif;
-font-size: 28px;
-font-weight: 300;
-letter-spacing: 0.18em;
-color: var(–text);
-margin-bottom: 4px;
-}
-
-.colophon-logo span { color: var(–gold); }
-
-.colophon-tagline {
-font-family: ‘Cormorant Garamond’, serif;
-font-style: italic;
-font-size: 13px;
-color: var(–purple-light);
-letter-spacing: 0.1em;
-margin-bottom: 16px;
-}
-
-.colophon-copy {
-font-size: 9px;
-color: var(–text-dim);
-letter-spacing: 0.12em;
-}
-
-/* ── ANIMATIONS ── */
-@keyframes fadeUp {
-from { opacity: 0; transform: translateY(12px); }
-to   { opacity: 1; transform: translateY(0); }
-}
-
-.reveal {
-opacity: 0;
-transform: translateY(16px);
-transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.reveal.visible { opacity: 1; transform: none; }
-
-/* ── BACK TO TOP ── */
-.back-top {
-position: fixed;
-bottom: 20px;
-right: 16px;
-width: 40px;
-height: 40px;
-background: var(–white);
-border: 1px solid var(–border-gold);
-border-radius: 50%;
-color: var(–gold);
-font-size: 16px;
-cursor: pointer;
-display: flex;
-align-items: center;
-justify-content: center;
-opacity: 0;
-pointer-events: none;
-transition: opacity 0.3s;
-z-index: 100;
-font-family: ‘Cormorant Garamond’, serif;
-box-shadow: 0 2px 12px rgba(139,123,174,0.12);
--webkit-tap-highlight-color: transparent;
-}
-
-.back-top.visible { opacity: 1; pointer-events: auto; }
+  body {
+    background: var(--white);
+    color: var(--text);
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 1.8;
+    max-width: 480px;
+    margin: 0 auto;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 60px 20px 70px;
+    background:
+      radial-gradient(ellipse at 60% 0%, rgba(212,176,122,0.12) 0%, transparent 55%),
+      radial-gradient(ellipse at 20% 100%, rgba(169,155,199,0.18) 0%, transparent 55%),
+      linear-gradient(160deg, #FDFCFF 0%, #F5F2FB 50%, #FBF8F2 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(212,176,122,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: -40px;
+    width: 360px; height: 360px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(139,123,174,0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-badge {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 9px;
+    letter-spacing: 0.38em;
+    color: var(--purple-light);
+    text-transform: uppercase;
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.2s forwards;
+  }
+
+  .hero-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 58px;
+    font-weight: 300;
+    letter-spacing: 0.14em;
+    color: var(--text);
+    line-height: 1;
+    margin-bottom: 6px;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.4s forwards;
+  }
+
+  .hero-logo span { color: var(--gold); }
+
+  .hero-sub {
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    color: var(--text-dim);
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.55s forwards;
+  }
+
+  .hero-divider {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.65s forwards;
+  }
+
+  .hero-divider::before,
+  .hero-divider::after {
+    content: '';
+    width: 40px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold-pale));
+  }
+
+  .hero-divider::after {
+    background: linear-gradient(to left, transparent, var(--gold-pale));
+  }
+
+  .hero-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 17px;
+    color: var(--purple);
+    letter-spacing: 0.08em;
+    margin-bottom: 56px;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.7s forwards;
+  }
+
+  .hero-scroll {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    opacity: 0;
+    animation: fadeUp 0.9s 1s forwards;
+  }
+
+  .hero-scroll span {
+    font-size: 8px;
+    letter-spacing: 0.3em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+  }
+
+  .hero-scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--gold-light), transparent);
+    animation: lineDown 1.6s 1.5s ease-in-out infinite;
+  }
+
+  @keyframes lineDown {
+    0%   { transform: scaleY(0); transform-origin: top; }
+    50%  { transform: scaleY(1); transform-origin: top; }
+    51%  { transform-origin: bottom; }
+    100% { transform: scaleY(0); transform-origin: bottom; }
+  }
+
+  /* ── TOC ── */
+  .toc {
+    background: var(--cream);
+    border-top: 1px solid var(--border-gold);
+    border-bottom: 1px solid var(--border-gold);
+    padding: 28px 20px;
+  }
+
+  .toc-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 9px;
+    letter-spacing: 0.4em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .toc-list { display: flex; flex-direction: column; }
+
+  .toc-item {
+    color: var(--text-mid);
+    font-size: 13px;
+    text-decoration: none;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: color 0.2s;
+  }
+
+  .toc-item:last-child { border-bottom: none; }
+  .toc-item:active { color: var(--purple); }
+
+  .toc-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 11px;
+    color: var(--gold);
+    min-width: 20px;
+    flex-shrink: 0;
+  }
+
+  /* ── SECTION ── */
+  section {
+    padding: 52px 20px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  section:nth-child(even) { background: var(--purple-soft); }
+
+  .section-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 64px;
+    font-weight: 300;
+    color: rgba(139,123,174,0.07);
+    line-height: 1;
+    margin-bottom: -18px;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 400;
+    color: var(--text);
+    letter-spacing: 0.06em;
+    margin-bottom: 24px;
+    padding-bottom: 14px;
+    position: relative;
+  }
+
+  .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, var(--gold-light), var(--purple-pale), transparent);
+  }
+
+  .sub-title {
+    font-size: 9px;
+    font-weight: 500;
+    color: var(--purple);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    margin: 28px 0 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .sub-title::before {
+    content: '';
+    width: 16px;
+    height: 1px;
+    background: var(--gold-light);
+    flex-shrink: 0;
+  }
+
+  p {
+    font-size: 13px;
+    color: var(--text-mid);
+    line-height: 1.9;
+    margin-bottom: 14px;
+  }
+
+  /* ── ROW CARDS ── */
+  .row-cards { margin: 8px 0 20px; }
+
+  .row-card {
+    border-bottom: 1px solid var(--border);
+    padding: 12px 0;
+  }
+
+  .row-card:first-child { border-top: 1px solid var(--border); }
+
+  .row-label {
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--purple);
+    letter-spacing: 0.12em;
+    margin-bottom: 3px;
+  }
+
+  .row-value {
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.7;
+  }
+
+  .row-sub {
+    font-size: 12px;
+    color: var(--text-dim);
+    line-height: 1.7;
+    margin-top: 2px;
+  }
+
+  /* ── BADGE ── */
+  .cat-badge {
+    display: inline-flex;
+    align-items: center;
+    background: var(--purple-faint);
+    border: 1px solid var(--purple-pale);
+    border-radius: 2px;
+    padding: 4px 12px;
+    font-size: 11px;
+    color: var(--purple);
+    letter-spacing: 0.08em;
+    margin-bottom: 10px;
+  }
+
+  .cat-badge.gold {
+    background: var(--cream);
+    border-color: var(--border-gold);
+    color: var(--gold);
+  }
+
+  /* ── ING CARDS ── */
+  .ing-card {
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 8px;
+    background: var(--white);
+  }
+
+  .ing-card-head {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    background: linear-gradient(135deg, var(--purple-faint), var(--cream));
+    padding: 10px 14px;
+  }
+
+  .ing-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  .ing-amount {
+    font-size: 12px;
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+
+  .ing-desc {
+    font-size: 12px;
+    color: var(--text-mid);
+    line-height: 1.75;
+    padding: 10px 14px;
+  }
+
+  /* ── COMPARISON CARDS ── */
+  .comp-item {
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 8px;
+  }
+
+  .comp-label {
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+    background: rgba(255,255,255,0.7);
+    padding: 7px 14px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .comp-row { display: flex; }
+
+  .comp-col {
+    flex: 1;
+    padding: 10px 12px;
+    font-size: 12px;
+    line-height: 1.6;
+    border-right: 1px solid var(--border);
+  }
+
+  .comp-col:last-child { border-right: none; }
+
+  .comp-col-head {
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    margin-bottom: 4px;
+  }
+
+  .comp-col.ours { background: rgba(212,205,234,0.1); }
+  .comp-col.ours .comp-col-head { color: var(--purple); }
+  .comp-col.ours .comp-col-val { color: var(--text); }
+  .comp-col.theirs .comp-col-head { color: var(--text-dim); }
+  .comp-col.theirs .comp-col-val { color: var(--text-dim); }
+
+  /* ── LISTS ── */
+  .list { margin: 0 0 20px; }
+
+  .list-item {
+    font-size: 13px;
+    color: var(--text-mid);
+    padding: 8px 0 8px 18px;
+    position: relative;
+    border-bottom: 1px solid var(--border);
+    line-height: 1.7;
+  }
+
+  .list-item:last-child { border-bottom: none; }
+
+  .list-item::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--gold-light);
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  /* ── NOTE ── */
+  .note {
+    background: var(--purple-faint);
+    border-left: 2px solid var(--purple-pale);
+    padding: 12px 14px;
+    margin: 14px 0;
+    font-size: 12px;
+    color: var(--text-mid);
+    line-height: 1.75;
+    border-radius: 0 2px 2px 0;
+  }
+
+  /* ── FAQ ── */
+  .faq-item {
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    margin-bottom: 8px;
+    overflow: hidden;
+    background: var(--white);
+  }
+
+  .faq-q {
+    padding: 14px 44px 14px 14px;
+    font-size: 13px;
+    color: var(--text);
+    cursor: pointer;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    position: relative;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    transition: background 0.2s;
+  }
+
+  .faq-q:active { background: var(--purple-soft); }
+
+  .faq-q::after {
+    content: '+';
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--purple-light);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    line-height: 1;
+    transition: transform 0.25s;
+  }
+
+  .faq-item.open .faq-q::after { transform: translateY(-50%) rotate(45deg); }
+
+  .faq-qlabel {
+    color: var(--gold);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    line-height: 1.1;
+    flex-shrink: 0;
+  }
+
+  .faq-a {
+    display: none;
+    padding: 12px 14px 14px 38px;
+    font-size: 12px;
+    color: var(--text-mid);
+    line-height: 1.85;
+    border-top: 1px solid var(--border);
+    background: var(--purple-soft);
+  }
+
+  .faq-item.open .faq-a { display: block; }
+
+  /* ── TIMING ── */
+  .timing-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--gold-light);
+    border-radius: 2px;
+    padding: 16px;
+    margin-bottom: 10px;
+  }
+
+  .timing-tag {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .timing-main {
+    font-size: 14px;
+    color: var(--text);
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+
+  .timing-reason {
+    font-size: 12px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+
+  /* ── COLOPHON ── */
+  .colophon {
+    background: linear-gradient(160deg, var(--purple-soft) 0%, var(--cream) 100%);
+    text-align: center;
+    padding: 52px 20px;
+    border-top: 1px solid var(--border-gold);
+  }
+
+  .colophon-deco {
+    color: var(--gold-pale);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14px;
+    margin-bottom: 16px;
+  }
+
+  .colophon-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 300;
+    letter-spacing: 0.18em;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+
+  .colophon-logo span { color: var(--gold); }
+
+  .colophon-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 13px;
+    color: var(--purple-light);
+    letter-spacing: 0.1em;
+    margin-bottom: 16px;
+  }
+
+  .colophon-copy {
+    font-size: 9px;
+    color: var(--text-dim);
+    letter-spacing: 0.12em;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* ── BACK TO TOP ── */
+  .back-top {
+    position: fixed;
+    bottom: 20px;
+    right: 16px;
+    width: 40px;
+    height: 40px;
+    background: var(--white);
+    border: 1px solid var(--border-gold);
+    border-radius: 50%;
+    color: var(--gold);
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+    z-index: 100;
+    font-family: 'Cormorant Garamond', serif;
+    box-shadow: 0 2px 12px rgba(139,123,174,0.12);
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .back-top.visible { opacity: 1; pointer-events: auto; }
 </style>
-
 </head>
 <body>
 
 <!-- HERO -->
-
 <div class="hero">
   <div class="hero-badge">社内研修用資料</div>
   <div class="hero-logo">CHURA<span>BITA</span></div>
@@ -636,7 +633,6 @@ box-shadow: 0 2px 12px rgba(139,123,174,0.12);
 </div>
 
 <!-- TOC -->
-
 <nav class="toc">
   <div class="toc-title">Contents</div>
   <div class="toc-list">
@@ -656,7 +652,6 @@ box-shadow: 0 2px 12px rgba(139,123,174,0.12);
 </nav>
 
 <!-- S1 商品概要 -->
-
 <section id="s1">
   <div class="reveal">
     <div class="section-num">01</div>
@@ -671,7 +666,6 @@ box-shadow: 0 2px 12px rgba(139,123,174,0.12);
 </section>
 
 <!-- S2 開発背景 -->
-
 <section id="s2">
   <div class="reveal">
     <div class="section-num">02</div>
@@ -690,45 +684,40 @@ box-shadow: 0 2px 12px rgba(139,123,174,0.12);
 </section>
 
 <!-- S3 成分解説 -->
-
 <section id="s3">
   <div class="reveal">
     <div class="section-num">03</div>
     <h2 class="section-title">成分解説</h2>
     <p>1日7粒あたりの配合量と各成分の役割を5つのカテゴリに整理しました。</p>
 
-```
-<div class="cat-badge">① 美肌と粘膜の健康</div>
-<div class="ing-card"><div class="ing-card-head"><span class="ing-name">ビタミンB2</span><span class="ing-amount">50mg</span></div><div class="ing-desc">「皮膚と粘膜のビタミン」と呼ばれ、肌荒れ・口内炎・ニキビの予防に役立ち、ターンオーバーをサポート</div></div>
-<div class="ing-card"><div class="ing-card-head"><span class="ing-name">ビタミンB6</span><span class="ing-amount">40mg</span></div><div class="ing-desc">タンパク質の代謝を助けるため、ハリのある肌や健康な髪・爪を作るのに欠かせない</div></div>
-<div class="ing-card"><div class="ing-card-head"><span class="ing-name">ビオチン</span><span class="ing-amount">500μg</span></div><div class="ing-desc">「美容ビタミン」として知られ、コラーゲン生成を助け、髪のツヤ・地肌・粘膜の健康を維持。基準値の10倍配合</div></div>
+    <div class="cat-badge">① 美肌と粘膜の健康</div>
+    <div class="ing-card"><div class="ing-card-head"><span class="ing-name">ビタミンB2</span><span class="ing-amount">50mg</span></div><div class="ing-desc">「皮膚と粘膜のビタミン」と呼ばれ、肌荒れ・口内炎・ニキビの予防に役立ち、ターンオーバーをサポート</div></div>
+    <div class="ing-card"><div class="ing-card-head"><span class="ing-name">ビタミンB6</span><span class="ing-amount">40mg</span></div><div class="ing-desc">タンパク質の代謝を助けるため、ハリのある肌や健康な髪・爪を作るのに欠かせない</div></div>
+    <div class="ing-card"><div class="ing-card-head"><span class="ing-name">ビオチン</span><span class="ing-amount">500μg</span></div><div class="ing-desc">「美容ビタミン」として知られ、コラーゲン生成を助け、髪のツヤ・地肌・粘膜の健康を維持。基準値の10倍配合</div></div>
 
-<div class="cat-badge" style="margin-top:20px">② 鉄分不足と血流（貧血対策）</div>
-<div class="ing-card"><div class="ing-card-head"><span class="ing-name">ヘム鉄</span><span class="ing-amount">7mg</span></div><div class="ing-desc">肉・魚由来の吸収率が高い鉄分。胃への負担がほぼなく継続しやすい。貧血・顔色の悪さ・だるさのケアに</div></div>
-<div class="ing-card"><div class="ing-card-head"><span class="ing-name">葉酸</span><span class="ing-amount">500μg</span></div><div class="ing-desc">ヘム鉄と組み合わせることで赤血球の生成を助ける。妊娠中・妊活中の方にも対応</div></div>
-<div class="ing-card"><div class="ing-card-head"><span class="ing-name">ビタミンB12</span><span class="ing-amount">200μg</span></div><div class="ing-desc">葉酸とともに「血を作るビタミン」として働き、質の良い血液づくりをサポート</div></div>
+    <div class="cat-badge" style="margin-top:20px">② 鉄分不足と血流（貧血対策）</div>
+    <div class="ing-card"><div class="ing-card-head"><span class="ing-name">ヘム鉄</span><span class="ing-amount">7mg</span></div><div class="ing-desc">肉・魚由来の吸収率が高い鉄分。胃への負担がほぼなく継続しやすい。貧血・顔色の悪さ・だるさのケアに</div></div>
+    <div class="ing-card"><div class="ing-card-head"><span class="ing-name">葉酸</span><span class="ing-amount">500μg</span></div><div class="ing-desc">ヘム鉄と組み合わせることで赤血球の生成を助ける。妊娠中・妊活中の方にも対応</div></div>
+    <div class="ing-card"><div class="ing-card-head"><span class="ing-name">ビタミンB12</span><span class="ing-amount">200μg</span></div><div class="ing-desc">葉酸とともに「血を作るビタミン」として働き、質の良い血液づくりをサポート</div></div>
 
-<div class="cat-badge" style="margin-top:20px">③ ホルモンバランスと心の安定</div>
-<div class="ing-card"><div class="ing-card-head"><span class="ing-name">ビタミンB6</span><span class="ing-amount">40mg</span></div><div class="ing-desc">PMS（月経前症候群）のイライラや気分の落ち込みを和らげる働きがあるとして注目されている</div></div>
-<div class="ing-card"><div class="ing-card-head"><span class="ing-name">ナイアシン</span><span class="ing-amount">200mg</span></div><div class="ing-desc">脳内物質の生成に関わり、精神的な安定を維持するのを助ける</div></div>
+    <div class="cat-badge" style="margin-top:20px">③ ホルモンバランスと心の安定</div>
+    <div class="ing-card"><div class="ing-card-head"><span class="ing-name">ビタミンB6</span><span class="ing-amount">40mg</span></div><div class="ing-desc">PMS（月経前症候群）のイライラや気分の落ち込みを和らげる働きがあるとして注目されている</div></div>
+    <div class="ing-card"><div class="ing-card-head"><span class="ing-name">ナイアシン</span><span class="ing-amount">200mg</span></div><div class="ing-desc">脳内物質の生成に関わり、精神的な安定を維持するのを助ける</div></div>
 
-<div class="cat-badge" style="margin-top:20px">④ アンチエイジングと透明感</div>
-<div class="ing-card"><div class="ing-card-head"><span class="ing-name">ビタミンC</span><span class="ing-amount">1,000mg</span></div><div class="ing-desc">強力な抗酸化作用があり、紫外線によるシミの元（メラニン）を抑えるほか、肌の弾力を保つコラーゲン合成に必須</div></div>
+    <div class="cat-badge" style="margin-top:20px">④ アンチエイジングと透明感</div>
+    <div class="ing-card"><div class="ing-card-head"><span class="ing-name">ビタミンC</span><span class="ing-amount">1,000mg</span></div><div class="ing-desc">強力な抗酸化作用があり、紫外線によるシミの元（メラニン）を抑えるほか、肌の弾力を保つコラーゲン合成に必須</div></div>
 
-<div class="cat-badge" style="margin-top:20px">⑤ 忙しい毎日の疲労回復</div>
-<div class="ing-card"><div class="ing-card-head"><span class="ing-name">パントテン酸</span><span class="ing-amount">200mg</span></div><div class="ing-desc">別名「抗ストレスビタミン」。副腎皮質ホルモンの合成を助け、ストレスに負けない体づくりをサポート</div></div>
-<div class="ing-card"><div class="ing-card-head"><span class="ing-name">ビタミンB1</span><span class="ing-amount">50mg</span></div><div class="ing-desc">糖質をエネルギーに変える。甘いものを食べた後のリカバリーや、活動的な毎日のエネルギー源に</div></div>
+    <div class="cat-badge" style="margin-top:20px">⑤ 忙しい毎日の疲労回復</div>
+    <div class="ing-card"><div class="ing-card-head"><span class="ing-name">パントテン酸</span><span class="ing-amount">200mg</span></div><div class="ing-desc">別名「抗ストレスビタミン」。副腎皮質ホルモンの合成を助け、ストレスに負けない体づくりをサポート</div></div>
+    <div class="ing-card"><div class="ing-card-head"><span class="ing-name">ビタミンB1</span><span class="ing-amount">50mg</span></div><div class="ing-desc">糖質をエネルギーに変える。甘いものを食べた後のリカバリーや、活動的な毎日のエネルギー源に</div></div>
 
-<div class="sub-title">総合評価</div>
-<p>チュラビタは単なるマルチビタミンではなく、「エネルギー代謝」と「鉄分補給」に重点を置いたパワフルな配合のサプリメントです。特に「ヘム鉄＋葉酸＋ビタミンB12」の組み合わせが大きな強みです。</p>
-<div class="note">※ビタミンB群は黄金バランスで配合。このバランスが、チュラビタの強みです。</div>
-```
-
+    <div class="sub-title">総合評価</div>
+    <p>チュラビタは単なるマルチビタミンではなく、「エネルギー代謝」と「鉄分補給」に重点を置いたパワフルな配合のサプリメントです。特に「ヘム鉄＋葉酸＋ビタミンB12」の組み合わせが大きな強みです。</p>
+    <div class="note">※ビタミンB群は黄金バランスで配合。このバランスが、チュラビタの強みです。</div>
   </div>
 </section>
 
 <!-- C1 -->
-
 <section id="c1">
   <div class="reveal">
     <div class="cat-badge gold">Column 01</div>
@@ -750,7 +739,6 @@ box-shadow: 0 2px 12px rgba(139,123,174,0.12);
 </section>
 
 <!-- C2 -->
-
 <section id="c2">
   <div class="reveal">
     <div class="cat-badge gold">Column 02</div>
@@ -776,7 +764,6 @@ box-shadow: 0 2px 12px rgba(139,123,174,0.12);
 </section>
 
 <!-- C3 -->
-
 <section id="c3">
   <div class="reveal">
     <div class="cat-badge gold">Column 03</div>
@@ -798,7 +785,6 @@ box-shadow: 0 2px 12px rgba(139,123,174,0.12);
 </section>
 
 <!-- S4 ターゲット -->
-
 <section id="s4">
   <div class="reveal">
     <div class="section-num">04</div>
@@ -826,7 +812,6 @@ box-shadow: 0 2px 12px rgba(139,123,174,0.12);
 </section>
 
 <!-- S5 男性 -->
-
 <section id="s5">
   <div class="reveal">
     <div class="section-num">05</div>
@@ -844,7 +829,6 @@ box-shadow: 0 2px 12px rgba(139,123,174,0.12);
 </section>
 
 <!-- S6 女性 -->
-
 <section id="s6">
   <div class="reveal">
     <div class="section-num">06</div>
@@ -862,7 +846,6 @@ box-shadow: 0 2px 12px rgba(139,123,174,0.12);
 </section>
 
 <!-- S7 競合 -->
-
 <section id="s7">
   <div class="reveal">
     <div class="section-num">07</div>
@@ -885,7 +868,6 @@ box-shadow: 0 2px 12px rgba(139,123,174,0.12);
 </section>
 
 <!-- S8 FAQ -->
-
 <section id="s8">
   <div class="reveal">
     <div class="section-num">08</div>
@@ -901,7 +883,6 @@ box-shadow: 0 2px 12px rgba(139,123,174,0.12);
 </section>
 
 <!-- S9 飲み方 -->
-
 <section id="s9">
   <div class="reveal">
     <div class="section-num">09</div>
@@ -920,7 +901,6 @@ box-shadow: 0 2px 12px rgba(139,123,174,0.12);
 </section>
 
 <!-- COLOPHON -->
-
 <div class="colophon">
   <div class="colophon-deco">✦</div>
   <div class="colophon-logo">CHURA<span>BITA</span></div>
@@ -946,6 +926,5 @@ box-shadow: 0 2px 12px rgba(139,123,174,0.12);
   const btn = document.getElementById('backTop');
   window.addEventListener('scroll', () => btn.classList.toggle('visible', window.scrollY > 300));
 </script>
-
 </body>
 </html>
