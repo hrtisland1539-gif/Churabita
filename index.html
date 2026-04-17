@@ -3,9 +3,9 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>CHURA BITA 社内研修資料</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CHURABITA 社内研修資料</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
     --gold: #B8965A;
@@ -17,6 +17,7 @@
     --purple-faint: #EEE9F6;
     --purple-soft: #F5F2FB;
     --white: #FFFFFF;
+    --off-white: #FAFAF8;
     --cream: #F7F4EE;
     --text: #2C2540;
     --text-mid: #5A5272;
@@ -33,10 +34,7 @@ background: var(–white);
 color: var(–text);
 font-family: ‘Noto Sans JP’, sans-serif;
 font-weight: 300;
-font-size: 14px;
 line-height: 1.8;
-max-width: 480px;
-margin: 0 auto;
 -webkit-font-smoothing: antialiased;
 }
 
@@ -48,79 +46,114 @@ flex-direction: column;
 justify-content: center;
 align-items: center;
 text-align: center;
-padding: 60px 20px 70px;
-background:
-radial-gradient(ellipse at 70% 0%, rgba(212,176,122,0.13) 0%, transparent 55%),
-radial-gradient(ellipse at 15% 100%, rgba(169,155,199,0.18) 0%, transparent 55%),
-linear-gradient(160deg, #FDFCFF 0%, #F5F2FB 55%, #FBF8F2 100%);
+padding: 80px 24px;
 position: relative;
 overflow: hidden;
+background:
+radial-gradient(ellipse at 60% 0%, rgba(212,176,122,0.12) 0%, transparent 55%),
+radial-gradient(ellipse at 20% 100%, rgba(169,155,199,0.18) 0%, transparent 55%),
+linear-gradient(160deg, #FDFCFF 0%, #F5F2FB 50%, #FBF8F2 100%);
+}
+
+.hero::before {
+content: ‘’;
+position: absolute;
+top: -60px; right: -60px;
+width: 300px; height: 300px;
+border-radius: 50%;
+background: radial-gradient(circle, rgba(212,176,122,0.08) 0%, transparent 70%);
+pointer-events: none;
+}
+
+.hero::after {
+content: ‘’;
+position: absolute;
+bottom: -80px; left: -40px;
+width: 360px; height: 360px;
+border-radius: 50%;
+background: radial-gradient(circle, rgba(139,123,174,0.1) 0%, transparent 70%);
+pointer-events: none;
 }
 
 .hero-badge {
-font-size: 9px;
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 10px;
 letter-spacing: 0.38em;
 color: var(–purple-light);
 text-transform: uppercase;
-margin-bottom: 28px;
+margin-bottom: 36px;
 opacity: 0;
-animation: fadeUp 0.8s 0.2s forwards;
+animation: fadeUp 0.9s 0.2s forwards;
 }
 
 .hero-logo {
 font-family: ‘Cormorant Garamond’, serif;
-font-size: 58px;
+font-size: clamp(48px, 15vw, 86px);
 font-weight: 300;
 letter-spacing: 0.14em;
 color: var(–text);
 line-height: 1;
 margin-bottom: 6px;
 opacity: 0;
-animation: fadeUp 0.8s 0.35s forwards;
+animation: fadeUp 0.9s 0.4s forwards;
 }
 
-.hero-logo span { color: var(–gold); }
+.hero-logo span {
+color: var(–gold);
+}
 
 .hero-sub {
-font-size: 11px;
+font-size: 12px;
 letter-spacing: 0.3em;
 color: var(–text-dim);
-margin-bottom: 28px;
+margin-bottom: 36px;
 opacity: 0;
-animation: fadeUp 0.8s 0.5s forwards;
+animation: fadeUp 0.9s 0.55s forwards;
 }
 
 .hero-divider {
-width: 80px;
-height: 1px;
-background: linear-gradient(to right, transparent, var(–gold-pale), transparent);
-margin-bottom: 20px;
+display: flex;
+align-items: center;
+gap: 14px;
+margin-bottom: 24px;
 opacity: 0;
-animation: fadeUp 0.8s 0.6s forwards;
+animation: fadeUp 0.9s 0.7s forwards;
+}
+
+.hero-divider::before,
+.hero-divider::after {
+content: ‘’;
+width: 40px;
+height: 1px;
+background: linear-gradient(to right, transparent, var(–gold-pale));
+}
+
+.hero-divider::after {
+background: linear-gradient(to left, transparent, var(–gold-pale));
 }
 
 .hero-tagline {
 font-family: ‘Cormorant Garamond’, serif;
 font-style: italic;
-font-size: 17px;
+font-size: clamp(15px, 4vw, 20px);
 color: var(–purple);
 letter-spacing: 0.08em;
-margin-bottom: 56px;
+margin-bottom: 64px;
 opacity: 0;
-animation: fadeUp 0.8s 0.65s forwards;
+animation: fadeUp 0.9s 0.7s forwards;
 }
 
 .hero-scroll {
 display: flex;
 flex-direction: column;
 align-items: center;
-gap: 6px;
+gap: 8px;
 opacity: 0;
-animation: fadeUp 0.8s 1s forwards;
+animation: fadeUp 0.9s 1s forwards;
 }
 
 .hero-scroll span {
-font-size: 8px;
+font-size: 9px;
 letter-spacing: 0.3em;
 color: var(–text-dim);
 text-transform: uppercase;
@@ -128,16 +161,16 @@ text-transform: uppercase;
 
 .hero-scroll-line {
 width: 1px;
-height: 40px;
+height: 48px;
 background: linear-gradient(to bottom, var(–gold-light), transparent);
-animation: lineDown 1.6s 1.5s ease-in-out infinite;
+animation: lineDown 1.5s 1.5s ease-in-out infinite;
 }
 
 @keyframes lineDown {
-0%   { transform: scaleY(0); transform-origin: top; }
-50%  { transform: scaleY(1); transform-origin: top; }
-51%  { transform-origin: bottom; }
-100% { transform: scaleY(0); transform-origin: bottom; }
+0%   { transform: scaleY(0); transform-origin: top; opacity: 1; }
+50%  { transform: scaleY(1); transform-origin: top; opacity: 1; }
+51%  { transform: scaleY(1); transform-origin: bottom; }
+100% { transform: scaleY(0); transform-origin: bottom; opacity: 0; }
 }
 
 /* ── TOC ── */
@@ -145,72 +178,75 @@ animation: lineDown 1.6s 1.5s ease-in-out infinite;
 background: var(–cream);
 border-top: 1px solid var(–border-gold);
 border-bottom: 1px solid var(–border-gold);
-padding: 28px 20px;
+padding: 36px 24px;
 }
 
 .toc-title {
 font-family: ‘Cormorant Garamond’, serif;
-font-size: 9px;
+font-size: 10px;
 letter-spacing: 0.4em;
 color: var(–gold);
 text-transform: uppercase;
-margin-bottom: 16px;
+margin-bottom: 20px;
 }
 
-.toc-list {
-display: flex;
-flex-direction: column;
-gap: 0;
+.toc-grid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 6px 20px;
 }
 
 .toc-item {
 color: var(–text-mid);
-font-size: 13px;
+font-size: 12px;
+letter-spacing: 0.04em;
 text-decoration: none;
-padding: 9px 0;
+padding: 7px 0;
 border-bottom: 1px solid var(–border);
+transition: color 0.2s;
 display: flex;
 align-items: center;
-gap: 10px;
-transition: color 0.2s;
+gap: 8px;
 }
 
-.toc-item:last-child { border-bottom: none; }
-.toc-item:active { color: var(–purple); }
+.toc-item:hover { color: var(–purple); }
 
 .toc-num {
 font-family: ‘Cormorant Garamond’, serif;
-font-size: 11px;
+font-size: 10px;
 color: var(–gold);
-min-width: 20px;
-flex-shrink: 0;
+min-width: 16px;
 }
 
-/* ── SECTION ── */
+/* ── SECTIONS ── */
 section {
-padding: 52px 20px;
+padding: 64px 24px;
 border-bottom: 1px solid var(–border);
+background: var(–white);
 }
 
-section:nth-child(even) { background: var(–purple-soft); }
+section:nth-child(even) {
+background: var(–purple-soft);
+}
 
 .section-num {
 font-family: ‘Cormorant Garamond’, serif;
-font-size: 64px;
+font-size: 80px;
 font-weight: 300;
 color: rgba(139,123,174,0.07);
 line-height: 1;
-margin-bottom: -18px;
+margin-bottom: -22px;
+letter-spacing: -0.02em;
 }
 
 .section-title {
 font-family: ‘Cormorant Garamond’, serif;
-font-size: 26px;
+font-size: clamp(22px, 6vw, 30px);
 font-weight: 400;
 color: var(–text);
 letter-spacing: 0.06em;
-margin-bottom: 24px;
-padding-bottom: 14px;
+margin-bottom: 28px;
+padding-bottom: 16px;
 position: relative;
 }
 
@@ -223,134 +259,154 @@ height: 1px;
 background: linear-gradient(to right, var(–gold-light), var(–purple-pale), transparent);
 }
 
-.sub-title {
-font-size: 9px;
+.subsection-title {
+font-size: 10px;
 font-weight: 500;
 color: var(–purple);
 letter-spacing: 0.22em;
-text-transform: uppercase;
 margin: 28px 0 12px;
+text-transform: uppercase;
 display: flex;
 align-items: center;
-gap: 8px;
+gap: 10px;
 }
 
-.sub-title::before {
+.subsection-title::before {
 content: ‘’;
-width: 16px;
+width: 18px;
 height: 1px;
 background: var(–gold-light);
 flex-shrink: 0;
 }
 
 p {
-font-size: 13px;
+font-size: 13.5px;
 color: var(–text-mid);
 line-height: 1.9;
-margin-bottom: 14px;
+margin-bottom: 16px;
 }
 
-/* ── ROW CARDS（テーブルの代わり） ── */
-.row-cards { margin: 8px 0 20px; }
-
-.row-card {
-border-bottom: 1px solid var(–border);
-padding: 13px 0;
-}
-
-.row-card:first-child { border-top: 1px solid var(–border); }
-
-.row-label {
-font-size: 10px;
-font-weight: 500;
-color: var(–purple);
-letter-spacing: 0.12em;
-margin-bottom: 4px;
-}
-
-.row-value {
-font-size: 13px;
-color: var(–text);
-line-height: 1.7;
-}
-
-.row-sub {
-font-size: 12px;
-color: var(–text-dim);
-line-height: 1.7;
-margin-top: 2px;
-}
-
-/* ── INGREDIENT CARDS ── */
-.cat-badge {
-display: inline-flex;
-align-items: center;
-background: var(–purple-faint);
-border: 1px solid var(–purple-pale);
-border-radius: 2px;
-padding: 4px 12px;
-font-size: 11px;
-color: var(–purple);
-letter-spacing: 0.08em;
-margin-bottom: 10px;
-}
-
-.cat-badge.gold {
-background: var(–cream);
-border-color: var(–border-gold);
-color: var(–gold);
-}
-
-.ing-card {
+/* ── PRODUCT TABLE ── */
+.product-table {
+width: 100%;
+border-collapse: collapse;
+margin: 8px 0 8px;
 border: 1px solid var(–border);
 border-radius: 4px;
 overflow: hidden;
-margin-bottom: 8px;
-background: var(–white);
 }
 
-.ing-card-head {
-display: flex;
-align-items: baseline;
-gap: 10px;
+.product-table tr {
+border-bottom: 1px solid var(–border);
+}
+
+.product-table tr:last-child { border-bottom: none; }
+
+.product-table td:first-child {
 background: linear-gradient(135deg, var(–purple-faint), var(–cream));
-padding: 10px 14px;
-}
-
-.ing-name {
-font-size: 13px;
+color: var(–purple);
+font-size: 10px;
 font-weight: 500;
+letter-spacing: 0.14em;
+padding: 15px 14px;
+width: 28%;
+vertical-align: middle;
+text-align: center;
+border-right: 1px solid var(–border);
+}
+
+.product-table td:last-child {
+padding: 15px 16px;
+font-size: 13px;
 color: var(–text);
+vertical-align: middle;
 }
 
-.ing-amount {
+/* ── INGREDIENT TABLE ── */
+.ing-table {
+width: 100%;
+border-collapse: collapse;
+margin: 10px 0 24px;
 font-size: 12px;
-color: var(–gold);
-flex-shrink: 0;
+border: 1px solid var(–border);
+overflow: hidden;
+border-radius: 2px;
 }
 
-.ing-desc {
-font-size: 12px;
+.ing-table th {
+background: linear-gradient(135deg, var(–purple-faint), var(–cream));
+color: var(–purple);
+font-size: 10px;
+font-weight: 500;
+letter-spacing: 0.15em;
+padding: 10px 10px;
+text-align: left;
+border-bottom: 1px solid var(–border);
+}
+
+.ing-table td {
+padding: 11px 10px;
+border-bottom: 1px solid var(–border);
 color: var(–text-mid);
-line-height: 1.75;
-padding: 10px 14px;
+vertical-align: top;
+line-height: 1.6;
+}
+
+.ing-table tr:last-child td { border-bottom: none; }
+
+.ing-table td:first-child {
+color: var(–text);
+font-weight: 500;
+width: 26%;
+}
+
+.ing-table td:nth-child(2) {
+color: var(–gold);
+white-space: nowrap;
+width: 16%;
+font-weight: 400;
+}
+
+.ing-table td:last-child {
+font-size: 11px;
+color: var(–text-dim);
+}
+
+/* ── CATEGORY BADGE ── */
+.category-badge {
+display: inline-flex;
+align-items: center;
+gap: 8px;
+background: var(–purple-faint);
+border: 1px solid var(–purple-pale);
+border-radius: 2px;
+padding: 5px 14px;
+font-size: 11px;
+color: var(–purple);
+letter-spacing: 0.1em;
+margin-bottom: 12px;
+font-weight: 400;
 }
 
 /* ── LISTS ── */
-.list { margin: 0 0 20px; }
+ul {
+list-style: none;
+margin: 0 0 20px;
+padding: 0;
+}
 
-.list-item {
+ul li {
 font-size: 13px;
 color: var(–text-mid);
-padding: 8px 0 8px 18px;
+padding: 8px 0 8px 20px;
 position: relative;
 border-bottom: 1px solid var(–border);
 line-height: 1.7;
 }
 
-.list-item:last-child { border-bottom: none; }
+ul li:last-child { border-bottom: none; }
 
-.list-item::before {
+ul li::before {
 content: ‘—’;
 position: absolute;
 left: 0;
@@ -358,62 +414,67 @@ color: var(–gold-light);
 font-family: ‘Cormorant Garamond’, serif;
 }
 
-/* ── COMPARISON CARDS ── */
-.comp-item {
+/* ── COMPARISON TABLE ── */
+.comp-table {
+width: 100%;
+border-collapse: collapse;
+margin: 12px 0 24px;
+font-size: 12px;
 border: 1px solid var(–border);
-border-radius: 4px;
+border-radius: 2px;
 overflow: hidden;
-margin-bottom: 8px;
 }
 
-.comp-label {
+.comp-table th {
+padding: 10px 8px;
 font-size: 10px;
-font-weight: 500;
-color: var(–text-dim);
 letter-spacing: 0.1em;
-background: rgba(255,255,255,0.6);
-padding: 7px 14px;
+font-weight: 500;
+text-align: center;
 border-bottom: 1px solid var(–border);
 }
 
-.comp-row {
-display: flex;
+.comp-table th:first-child {
+color: var(–text-dim);
+text-align: left;
+background: var(–off-white);
+width: 26%;
 }
 
-.comp-col {
-flex: 1;
-padding: 10px 12px;
-font-size: 12px;
-line-height: 1.6;
-border-right: 1px solid var(–border);
+.comp-table th:nth-child(2) {
+background: linear-gradient(135deg, var(–purple-faint), var(–cream));
+color: var(–purple);
 }
 
-.comp-col:last-child { border-right: none; }
-
-.comp-col-head {
-font-size: 9px;
-font-weight: 500;
-letter-spacing: 0.1em;
-margin-bottom: 4px;
+.comp-table th:last-child {
+color: var(–text-dim);
+background: var(–off-white);
 }
 
-.comp-col.ours { background: rgba(212,205,234,0.1); }
-.comp-col.ours .comp-col-head { color: var(–purple); }
-.comp-col.ours .comp-col-val { color: var(–text); }
+.comp-table td {
+padding: 11px 8px;
+border-bottom: 1px solid var(–border);
+vertical-align: top;
+line-height: 1.5;
+}
 
-.comp-col.theirs .comp-col-head { color: var(–text-dim); }
-.comp-col.theirs .comp-col-val { color: var(–text-dim); }
+.comp-table tr:last-child td { border-bottom: none; }
 
-/* ── NOTE ── */
-.note {
-background: var(–purple-faint);
-border-left: 2px solid var(–purple-pale);
-padding: 12px 14px;
-margin: 14px 0;
-font-size: 12px;
-color: var(–text-mid);
-line-height: 1.75;
-border-radius: 0 2px 2px 0;
+.comp-table td:first-child {
+color: var(–text-dim);
+font-size: 11px;
+background: var(–off-white);
+}
+
+.comp-table td:nth-child(2) {
+background: rgba(212,205,234,0.08);
+color: var(–text);
+font-size: 11px;
+}
+
+.comp-table td:last-child {
+color: var(–text-dim);
+font-size: 11px;
 }
 
 /* ── FAQ ── */
@@ -426,22 +487,25 @@ background: var(–white);
 }
 
 .faq-q {
-padding: 14px 44px 14px 14px;
+background: var(–white);
+padding: 16px 44px 16px 16px;
 font-size: 13px;
 color: var(–text);
 cursor: pointer;
 display: flex;
 align-items: flex-start;
-gap: 10px;
+gap: 12px;
 position: relative;
 user-select: none;
--webkit-tap-highlight-color: transparent;
+transition: background 0.2s;
 }
+
+.faq-q:hover { background: var(–purple-soft); }
 
 .faq-q::after {
 content: ‘+’;
 position: absolute;
-right: 14px;
+right: 16px;
 top: 50%;
 transform: translateY(-50%);
 color: var(–purple-light);
@@ -451,19 +515,21 @@ line-height: 1;
 transition: transform 0.25s;
 }
 
-.faq-item.open .faq-q::after { transform: translateY(-50%) rotate(45deg); }
+.faq-item.open .faq-q::after {
+transform: translateY(-50%) rotate(45deg);
+}
 
 .faq-qlabel {
 color: var(–gold);
 font-family: ‘Cormorant Garamond’, serif;
-font-size: 17px;
+font-size: 18px;
 line-height: 1.1;
 flex-shrink: 0;
 }
 
 .faq-a {
 display: none;
-padding: 12px 14px 14px 38px;
+padding: 14px 16px 16px 42px;
 font-size: 12.5px;
 color: var(–text-mid);
 line-height: 1.85;
@@ -473,60 +539,123 @@ background: var(–purple-soft);
 
 .faq-item.open .faq-a { display: block; }
 
-/* ── TIMING ── */
+/* ── TIMING CARDS ── */
 .timing-card {
 background: var(–white);
 border: 1px solid var(–border);
 border-left: 3px solid var(–gold-light);
 border-radius: 2px;
-padding: 16px;
-margin-bottom: 10px;
+padding: 20px 20px;
+margin-bottom: 12px;
 }
 
 .timing-tag {
 font-family: ‘Cormorant Garamond’, serif;
-font-size: 9px;
+font-size: 10px;
 letter-spacing: 0.3em;
 color: var(–gold);
 text-transform: uppercase;
-margin-bottom: 4px;
+margin-bottom: 6px;
 }
 
 .timing-main {
-font-size: 14px;
+font-size: 15px;
 color: var(–text);
 font-weight: 500;
-margin-bottom: 4px;
+margin-bottom: 6px;
+letter-spacing: 0.02em;
 }
 
 .timing-reason {
 font-size: 12px;
 color: var(–text-dim);
-line-height: 1.7;
+line-height: 1.75;
+}
+
+/* ── BIOTIN CARDS ── */
+.biotin-cards {
+display: flex;
+flex-direction: column;
+gap: 8px;
+margin: 10px 0 24px;
+}
+
+.biotin-card {
+background: var(–white);
+border: 1px solid var(–border);
+border-left: 3px solid var(–purple-pale);
+border-radius: 2px;
+padding: 14px 16px;
+}
+
+.biotin-label {
+font-size: 11px;
+font-weight: 500;
+color: var(–purple);
+letter-spacing: 0.12em;
+margin-bottom: 5px;
+white-space: nowrap;
+}
+
+.biotin-body {
+font-size: 13px;
+color: var(–text-mid);
+line-height: 1.75;
+}
+
+/* ── NOTE ── */
+.note {
+background: var(–purple-faint);
+border-left: 2px solid var(–purple-pale);
+padding: 13px 16px;
+margin: 16px 0;
+font-size: 12px;
+color: var(–text-mid);
+line-height: 1.75;
+border-radius: 0 2px 2px 0;
 }
 
 /* ── COLOPHON ── */
 .colophon {
 background: linear-gradient(160deg, var(–purple-soft) 0%, var(–cream) 100%);
 text-align: center;
-padding: 52px 20px;
+padding: 56px 24px;
 border-top: 1px solid var(–border-gold);
 }
 
 .colophon-deco {
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 16px;
+margin-bottom: 24px;
+}
+
+.colophon-deco::before,
+.colophon-deco::after {
+content: ‘’;
+width: 48px;
+height: 1px;
+background: linear-gradient(to right, transparent, var(–gold-pale));
+}
+
+.colophon-deco::after {
+background: linear-gradient(to left, transparent, var(–gold-pale));
+}
+
+.colophon-deco span {
 color: var(–gold-pale);
 font-family: ‘Cormorant Garamond’, serif;
 font-size: 14px;
-margin-bottom: 18px;
 }
 
 .colophon-logo {
 font-family: ‘Cormorant Garamond’, serif;
-font-size: 28px;
+font-size: 32px;
 font-weight: 300;
 letter-spacing: 0.18em;
 color: var(–text);
-margin-bottom: 4px;
+margin-bottom: 6px;
 }
 
 .colophon-logo span { color: var(–gold); }
@@ -534,37 +663,40 @@ margin-bottom: 4px;
 .colophon-tagline {
 font-family: ‘Cormorant Garamond’, serif;
 font-style: italic;
-font-size: 13px;
+font-size: 14px;
 color: var(–purple-light);
 letter-spacing: 0.1em;
-margin-bottom: 18px;
+margin-bottom: 20px;
 }
 
 .colophon-copy {
-font-size: 9px;
+font-size: 10px;
 color: var(–text-dim);
 letter-spacing: 0.12em;
 }
 
 /* ── ANIMATIONS ── */
 @keyframes fadeUp {
-from { opacity: 0; transform: translateY(12px); }
+from { opacity: 0; transform: translateY(14px); }
 to   { opacity: 1; transform: translateY(0); }
 }
 
 .reveal {
 opacity: 0;
-transform: translateY(16px);
-transition: opacity 0.6s ease, transform 0.6s ease;
+transform: translateY(18px);
+transition: opacity 0.65s ease, transform 0.65s ease;
 }
 
-.reveal.visible { opacity: 1; transform: none; }
+.reveal.visible {
+opacity: 1;
+transform: none;
+}
 
 /* ── BACK TO TOP ── */
 .back-top {
 position: fixed;
-bottom: 20px;
-right: 16px;
+bottom: 24px;
+right: 20px;
 width: 40px;
 height: 40px;
 background: var(–white);
@@ -577,15 +709,14 @@ display: flex;
 align-items: center;
 justify-content: center;
 opacity: 0;
-pointer-events: none;
-transition: opacity 0.3s;
+transition: opacity 0.3s, background 0.2s;
 z-index: 100;
 font-family: ‘Cormorant Garamond’, serif;
-box-shadow: 0 2px 12px rgba(139,123,174,0.12);
--webkit-tap-highlight-color: transparent;
+box-shadow: 0 2px 16px rgba(139,123,174,0.12);
 }
 
-.back-top.visible { opacity: 1; pointer-events: auto; }
+.back-top:hover { background: var(–purple-soft); }
+.back-top.visible { opacity: 1; }
 </style>
 
 </head>
@@ -597,7 +728,7 @@ box-shadow: 0 2px 12px rgba(139,123,174,0.12);
   <div class="hero-badge">社内研修用資料</div>
   <div class="hero-logo">CHURA<span>BITA</span></div>
   <div class="hero-sub">チュラビタ</div>
-  <div class="hero-divider"></div>
+  <div class="hero-divider"><span></span></div>
   <div class="hero-tagline">〜 内側から整える 〜</div>
   <div class="hero-scroll">
     <span>scroll</span>
@@ -609,69 +740,57 @@ box-shadow: 0 2px 12px rgba(139,123,174,0.12);
 
 <nav class="toc">
   <div class="toc-title">Contents</div>
-  <div class="toc-list">
+  <div class="toc-grid">
     <a href="#s1" class="toc-item"><span class="toc-num">01</span>商品概要</a>
-    <a href="#s2" class="toc-item"><span class="toc-num">02</span>開発背景・コンセプト</a>
+    <a href="#s2" class="toc-item"><span class="toc-num">02</span>開発背景</a>
     <a href="#s3" class="toc-item"><span class="toc-num">03</span>成分解説</a>
-    <a href="#c1" class="toc-item"><span class="toc-num">—</span>コラム① ビタミンとは</a>
-    <a href="#c2" class="toc-item"><span class="toc-num">—</span>コラム② ビオチンとは</a>
-    <a href="#c3" class="toc-item"><span class="toc-num">—</span>コラム③ ヘム鉄と非ヘム鉄の違い</a>
+    <a href="#c1" class="toc-item"><span class="toc-num">—</span>ビタミンとは</a>
+    <a href="#c2" class="toc-item"><span class="toc-num">—</span>ビオチンとは</a>
+    <a href="#c3" class="toc-item"><span class="toc-num">—</span>ヘム鉄の違い</a>
     <a href="#s4" class="toc-item"><span class="toc-num">04</span>ターゲット</a>
     <a href="#s5" class="toc-item"><span class="toc-num">05</span>男性の方へ</a>
     <a href="#s6" class="toc-item"><span class="toc-num">06</span>女性の方へ</a>
     <a href="#s7" class="toc-item"><span class="toc-num">07</span>競合優位性</a>
-    <a href="#s8" class="toc-item"><span class="toc-num">08</span>よくある質問（FAQ）</a>
+    <a href="#s8" class="toc-item"><span class="toc-num">08</span>よくある質問</a>
     <a href="#s9" class="toc-item"><span class="toc-num">09</span>飲み方ガイド</a>
   </div>
 </nav>
 
-<!-- S1 商品概要 -->
+<!-- S1 -->
 
 <section id="s1">
   <div class="reveal">
     <div class="section-num">01</div>
     <h2 class="section-title">商品概要</h2>
-    <div class="row-cards">
-      <div class="row-card">
-        <div class="row-label">商品名</div>
-        <div class="row-value">CHURA BITA（チュラビタ）</div>
-      </div>
-      <div class="row-card">
-        <div class="row-label">コンセプト</div>
-        <div class="row-value">内側から整える</div>
-      </div>
-      <div class="row-card">
-        <div class="row-label">内容量</div>
-        <div class="row-value">210粒入り（1日7粒 × 約1ヶ月分）</div>
-      </div>
-      <div class="row-card">
-        <div class="row-label">定価</div>
-        <div class="row-value">7,500円（税込）※仮</div>
-      </div>
-    </div>
+    <table class="product-table">
+      <tr><td>商品名</td><td>CHURABITA（チュラビタ）</td></tr>
+      <tr><td>コンセプト</td><td>内側から整える</td></tr>
+      <tr><td>内容量</td><td>210粒入り（1日7粒 × 約1ヶ月分）</td></tr>
+      <tr><td>定価</td><td>7,500円（税込）※仮</td></tr>
+    </table>
   </div>
 </section>
 
-<!-- S2 開発背景 -->
+<!-- S2 -->
 
 <section id="s2">
   <div class="reveal">
     <div class="section-num">02</div>
     <h2 class="section-title">開発背景・コンセプト</h2>
-    <div class="sub-title">ベースとなった処方</div>
+    <div class="subsection-title">ベースとなった処方</div>
     <p>有名メンタルクリニックが子供向けに開発したビタミンB群サプリメントが原型。子供が安全に飲めるレベルの処方をベースに、さらに成分を強化して完成。</p>
-    <div class="sub-title">処方のアップデート</div>
+    <div class="subsection-title">処方のアップデート</div>
     <p>子供向け処方をベースに、女性に特化した成分を追加・強化して完成。</p>
-    <div class="list">
-      <div class="list-item">ヘム鉄を追加：女性の鉄分不足・貧血対策</div>
-      <div class="list-item">葉酸を追加：妊活・妊娠中にも対応</div>
-      <div class="list-item">ビタミンCを配合：相乗効果で吸収率アップ</div>
-      <div class="list-item">ビオチンを大幅増量：栄養素等表示基準値の10倍配合</div>
-    </div>
+    <ul>
+      <li>ヘム鉄を追加：女性の鉄分不足・貧血対策</li>
+      <li>葉酸を追加：妊活・妊娠中にも対応</li>
+      <li>ビタミンCを配合：相乗効果で吸収率アップ</li>
+      <li>ビオチンを大幅増量：栄養素等表示基準値の10倍配合</li>
+    </ul>
   </div>
 </section>
 
-<!-- S3 成分解説 -->
+<!-- S3 -->
 
 <section id="s3">
   <div class="reveal">
@@ -680,61 +799,43 @@ box-shadow: 0 2px 12px rgba(139,123,174,0.12);
     <p>1日7粒あたりの配合量と各成分の役割を5つのカテゴリに整理しました。</p>
 
 ```
-<div class="cat-badge">① 美肌と粘膜の健康</div>
-<div class="ing-card">
-  <div class="ing-card-head"><span class="ing-name">ビタミンB2</span><span class="ing-amount">50mg</span></div>
-  <div class="ing-desc">「皮膚と粘膜のビタミン」と呼ばれ、肌荒れ・口内炎・ニキビの予防に役立ち、ターンオーバーをサポート</div>
-</div>
-<div class="ing-card">
-  <div class="ing-card-head"><span class="ing-name">ビタミンB6</span><span class="ing-amount">40mg</span></div>
-  <div class="ing-desc">タンパク質の代謝を助けるため、ハリのある肌や健康な髪・爪を作るのに欠かせない</div>
-</div>
-<div class="ing-card">
-  <div class="ing-card-head"><span class="ing-name">ビオチン</span><span class="ing-amount">500μg</span></div>
-  <div class="ing-desc">「美容ビタミン」として知られ、コラーゲン生成を助け、髪のツヤ・地肌・粘膜の健康を維持。基準値の10倍配合</div>
-</div>
+<div class="category-badge">① 美肌と粘膜の健康</div>
+<table class="ing-table">
+  <tr><th>成分名</th><th>配合量</th><th>効果・特徴</th></tr>
+  <tr><td>ビタミンB2</td><td>50mg</td><td>「皮膚と粘膜のビタミン」と呼ばれ、肌荒れ・口内炎・ニキビの予防に役立ち、ターンオーバーをサポート</td></tr>
+  <tr><td>ビタミンB6</td><td>40mg</td><td>タンパク質の代謝を助けるため、ハリのある肌や健康な髪・爪を作るのに欠かせない</td></tr>
+  <tr><td>ビオチン</td><td>500μg</td><td>「美容ビタミン」として知られ、コラーゲン生成を助け、髪のツヤ・地肌・粘膜の健康を維持。基準値の10倍配合</td></tr>
+</table>
 
-<div class="cat-badge" style="margin-top:20px">② 鉄分不足と血流（貧血対策）</div>
-<div class="ing-card">
-  <div class="ing-card-head"><span class="ing-name">ヘム鉄</span><span class="ing-amount">7mg</span></div>
-  <div class="ing-desc">肉・魚由来の吸収率が高い鉄分。胃への負担がほぼなく継続しやすい。貧血・顔色の悪さ・だるさのケアに</div>
-</div>
-<div class="ing-card">
-  <div class="ing-card-head"><span class="ing-name">葉酸</span><span class="ing-amount">500μg</span></div>
-  <div class="ing-desc">ヘム鉄と組み合わせることで赤血球の生成を助ける。妊娠中・妊活中の方にも対応</div>
-</div>
-<div class="ing-card">
-  <div class="ing-card-head"><span class="ing-name">ビタミンB12</span><span class="ing-amount">200μg</span></div>
-  <div class="ing-desc">葉酸とともに「血を作るビタミン」として働き、質の良い血液づくりをサポート</div>
-</div>
+<div class="category-badge">② 鉄分不足と血流（貧血対策）</div>
+<table class="ing-table">
+  <tr><th>成分名</th><th>配合量</th><th>効果・特徴</th></tr>
+  <tr><td>ヘム鉄</td><td>7mg</td><td>肉・魚由来の吸収率が高い鉄分。胃への負担がほぼなく継続しやすい。貧血・顔色の悪さ・だるさのケアに</td></tr>
+  <tr><td>葉酸</td><td>500μg</td><td>ヘム鉄と組み合わせることで赤血球の生成を助ける。妊娠中・妊活中の方にも対応</td></tr>
+  <tr><td>ビタミンB12</td><td>200μg</td><td>葉酸とともに「血を作るビタミン」として働き、質の良い血液づくりをサポート</td></tr>
+</table>
 
-<div class="cat-badge" style="margin-top:20px">③ ホルモンバランスと心の安定</div>
-<div class="ing-card">
-  <div class="ing-card-head"><span class="ing-name">ビタミンB6</span><span class="ing-amount">40mg</span></div>
-  <div class="ing-desc">PMS（月経前症候群）のイライラや気分の落ち込みを和らげる働きがあるとして注目されている</div>
-</div>
-<div class="ing-card">
-  <div class="ing-card-head"><span class="ing-name">ナイアシン</span><span class="ing-amount">200mg</span></div>
-  <div class="ing-desc">脳内物質の生成に関わり、精神的な安定を維持するのを助ける</div>
-</div>
+<div class="category-badge">③ ホルモンバランスと心の安定</div>
+<table class="ing-table">
+  <tr><th>成分名</th><th>配合量</th><th>効果・特徴</th></tr>
+  <tr><td>ビタミンB6</td><td>40mg</td><td>PMS（月経前症候群）のイライラや気分の落ち込みを和らげる働きがあるとして注目されている</td></tr>
+  <tr><td>ナイアシン</td><td>200mg</td><td>脳内物質の生成に関わり、精神的な安定を維持するのを助ける</td></tr>
+</table>
 
-<div class="cat-badge" style="margin-top:20px">④ アンチエイジングと透明感</div>
-<div class="ing-card">
-  <div class="ing-card-head"><span class="ing-name">ビタミンC</span><span class="ing-amount">1,000mg</span></div>
-  <div class="ing-desc">強力な抗酸化作用があり、紫外線によるシミの元（メラニン）を抑えるほか、肌の弾力を保つコラーゲン合成に必須</div>
-</div>
+<div class="category-badge">④ アンチエイジングと透明感</div>
+<table class="ing-table">
+  <tr><th>成分名</th><th>配合量</th><th>効果・特徴</th></tr>
+  <tr><td>ビタミンC</td><td>1,000mg</td><td>強力な抗酸化作用があり、紫外線によるシミの元（メラニン）を抑えるほか、肌の弾力を保つコラーゲン合成に必須</td></tr>
+</table>
 
-<div class="cat-badge" style="margin-top:20px">⑤ 忙しい毎日の疲労回復</div>
-<div class="ing-card">
-  <div class="ing-card-head"><span class="ing-name">パントテン酸</span><span class="ing-amount">200mg</span></div>
-  <div class="ing-desc">別名「抗ストレスビタミン」。副腎皮質ホルモンの合成を助け、ストレスに負けない体づくりをサポート</div>
-</div>
-<div class="ing-card">
-  <div class="ing-card-head"><span class="ing-name">ビタミンB1</span><span class="ing-amount">50mg</span></div>
-  <div class="ing-desc">糖質をエネルギーに変える。甘いものを食べた後のリカバリーや、活動的な毎日のエネルギー源に</div>
-</div>
+<div class="category-badge">⑤ 忙しい毎日の疲労回復</div>
+<table class="ing-table">
+  <tr><th>成分名</th><th>配合量</th><th>効果・特徴</th></tr>
+  <tr><td>パントテン酸</td><td>200mg</td><td>別名「抗ストレスビタミン」。副腎皮質ホルモンの合成を助け、ストレスに負けない体づくりをサポート</td></tr>
+  <tr><td>ビタミンB1</td><td>50mg</td><td>糖質をエネルギーに変える。甘いものを食べた後のリカバリーや、活動的な毎日のエネルギー源に</td></tr>
+</table>
 
-<div class="sub-title">総合評価</div>
+<div class="subsection-title">総合評価</div>
 <p>チュラビタは単なるマルチビタミンではなく、「エネルギー代謝」と「鉄分補給」に重点を置いたパワフルな配合のサプリメントです。特に「ヘム鉄＋葉酸＋ビタミンB12」という血液ケアに重要な成分がしっかり入っている点が大きな強みです。</p>
 <div class="note">※ビタミンB群は黄金バランスで配合。このバランスが、チュラビタの強みです。</div>
 ```
@@ -746,42 +847,26 @@ box-shadow: 0 2px 12px rgba(139,123,174,0.12);
 
 <section id="c1">
   <div class="reveal">
-    <div class="cat-badge gold">Column 01</div>
+    <div class="category-badge" style="background:var(--cream); border-color:var(--border-gold); color:var(--gold);">Column 01</div>
     <h2 class="section-title">そもそもビタミンとは</h2>
     <p>ビタミンとは、三大栄養素の代謝を助け、健康維持に不可欠な微量の有機化合物です。体内でほぼ合成できないため食事から摂取する必要があり、全部で13種類存在します。</p>
 
 ```
-<div class="sub-title">水溶性と脂溶性の違い</div>
-<div class="row-cards">
-  <div class="row-card">
-    <div class="row-label">水溶性ビタミン（9種類）　B群＋C</div>
-    <div class="row-sub">水に溶けやすく尿として排出されやすい。過剰摂取の心配は少ないが、こまめな摂取が必要</div>
-  </div>
-  <div class="row-card">
-    <div class="row-label">脂溶性ビタミン（4種類）　A・D・E・K</div>
-    <div class="row-sub">脂肪組織や肝臓に蓄えられる。サプリの摂りすぎで過剰症のリスクあり</div>
-  </div>
-</div>
+<div class="subsection-title">水溶性と脂溶性の違い</div>
+<table class="ing-table">
+  <tr><th>分類</th><th>種類</th><th>特徴</th></tr>
+  <tr><td>水溶性（9種類）</td><td>B群＋C</td><td>水に溶けやすく尿として排出。過剰摂取の心配は少ないが、こまめな摂取が必要</td></tr>
+  <tr><td>脂溶性（4種類）</td><td>A・D・E・K</td><td>脂肪組織や肝臓に蓄えられる。サプリの摂りすぎで過剰症のリスクあり</td></tr>
+</table>
 
-<div class="sub-title">不足するとどうなる？</div>
-<div class="row-cards">
-  <div class="row-card">
-    <div class="row-label">B1</div>
-    <div class="row-sub">疲れやすい・集中力低下・脚気</div>
-  </div>
-  <div class="row-card">
-    <div class="row-label">B2</div>
-    <div class="row-sub">口内炎・肌荒れ・目の充血</div>
-  </div>
-  <div class="row-card">
-    <div class="row-label">C</div>
-    <div class="row-sub">肌荒れ・免疫力低下</div>
-  </div>
-  <div class="row-card">
-    <div class="row-label">D</div>
-    <div class="row-sub">骨の弱化・免疫機能の低下</div>
-  </div>
-</div>
+<div class="subsection-title">不足するとどうなる？</div>
+<table class="ing-table">
+  <tr><th>ビタミン</th><th colspan="2">不足すると…</th></tr>
+  <tr><td>B1</td><td colspan="2">疲れやすい・集中力低下・脚気</td></tr>
+  <tr><td>B2</td><td colspan="2">口内炎・肌荒れ・目の充血</td></tr>
+  <tr><td>C</td><td colspan="2">肌荒れ・免疫力低下</td></tr>
+  <tr><td>D</td><td colspan="2">骨の弱化・免疫機能の低下</td></tr>
+</table>
 ```
 
   </div>
@@ -791,42 +876,42 @@ box-shadow: 0 2px 12px rgba(139,123,174,0.12);
 
 <section id="c2">
   <div class="reveal">
-    <div class="cat-badge gold">Column 02</div>
+    <div class="category-badge" style="background:var(--cream); border-color:var(--border-gold); color:var(--gold);">Column 02</div>
     <h2 class="section-title">ビオチンとは</h2>
     <p>ビオチンは「美容ビタミン」とも呼ばれる水溶性ビタミンの一種。チュラビタには栄養素等表示基準値の<strong style="color:var(--purple)">10倍にあたる500μg</strong>を配合しています。</p>
 
 ```
-<div class="sub-title">主な働き</div>
-<div class="row-cards">
-  <div class="row-card">
-    <div class="row-label">コラーゲン生成のサポート</div>
-    <div class="row-sub">肌の弾力を保つコラーゲンの合成を助け、ハリ・ツヤのある肌へ</div>
+<div class="subsection-title">主な働き</div>
+<div class="biotin-cards">
+  <div class="biotin-card">
+    <div class="biotin-label">コラーゲン生成</div>
+    <div class="biotin-body">肌の弾力を保つコラーゲンの合成を助け、ハリ・ツヤのある肌へ</div>
   </div>
-  <div class="row-card">
-    <div class="row-label">髪・頭皮のケア</div>
-    <div class="row-sub">髪のツヤや地肌の健康を保つのに寄与。抜け毛・薄毛が気になる方にも</div>
+  <div class="biotin-card">
+    <div class="biotin-label">髪・頭皮ケア</div>
+    <div class="biotin-body">髪のツヤや地肌の健康を保つのに寄与。抜け毛・薄毛が気になる方にも</div>
   </div>
-  <div class="row-card">
-    <div class="row-label">爪の強化</div>
-    <div class="row-sub">割れやすい・欠けやすい爪のケアに役立つ</div>
+  <div class="biotin-card">
+    <div class="biotin-label">爪の強化</div>
+    <div class="biotin-body">割れやすい・欠けやすい爪のケアに役立つ</div>
   </div>
-  <div class="row-card">
-    <div class="row-label">粘膜の健康維持</div>
-    <div class="row-sub">口内炎・肌荒れ・アトピーなど粘膜トラブルの改善をサポート</div>
+  <div class="biotin-card">
+    <div class="biotin-label">粘膜の健康維持</div>
+    <div class="biotin-body">口内炎・肌荒れ・アトピーなど粘膜トラブルの改善をサポート</div>
   </div>
-  <div class="row-card">
-    <div class="row-label">脂質・糖質・タンパク質の代謝</div>
-    <div class="row-sub">三大栄養素の代謝に関わり、エネルギーを効率よく生み出す</div>
+  <div class="biotin-card">
+    <div class="biotin-label">代謝サポート</div>
+    <div class="biotin-body">三大栄養素の代謝に関わり、エネルギーを効率よく生み出す</div>
   </div>
 </div>
 
-<div class="sub-title">こんな方に特におすすめ</div>
-<div class="list">
-  <div class="list-item">肌荒れ・ニキビ・アトピーが気になる方</div>
-  <div class="list-item">髪のツヤがなくなってきた・抜け毛が気になる方</div>
-  <div class="list-item">爪が割れやすい・弱い方</div>
-  <div class="list-item">口内炎が繰り返しできる方</div>
-</div>
+<div class="subsection-title">こんな方に特におすすめ</div>
+<ul>
+  <li>肌荒れ・ニキビ・アトピーが気になる方</li>
+  <li>髪のツヤがなくなってきた・抜け毛が気になる方</li>
+  <li>爪が割れやすい・弱い方</li>
+  <li>口内炎が繰り返しできる方</li>
+</ul>
 <div class="note">水溶性のため過剰摂取の心配が少なく、毎日継続して飲んでいただけます。</div>
 ```
 
@@ -837,251 +922,134 @@ box-shadow: 0 2px 12px rgba(139,123,174,0.12);
 
 <section id="c3">
   <div class="reveal">
-    <div class="cat-badge gold">Column 03</div>
+    <div class="category-badge" style="background:var(--cream); border-color:var(--border-gold); color:var(--gold);">Column 03</div>
     <h2 class="section-title">ヘム鉄と非ヘム鉄の違い</h2>
     <p>鉄分には「ヘム鉄」と「非ヘム鉄」の2種類があります。チュラビタが採用しているのはヘム鉄です。</p>
 
 ```
-<div class="comp-item">
-  <div class="comp-label">原料</div>
-  <div class="comp-row">
-    <div class="comp-col ours">
-      <div class="comp-col-head">ヘム鉄（チュラビタ）</div>
-      <div class="comp-col-val">肉・魚などの動物性食品由来</div>
-    </div>
-    <div class="comp-col theirs">
-      <div class="comp-col-head">非ヘム鉄（一般的）</div>
-      <div class="comp-col-val">野菜・大豆などの植物性食品由来</div>
-    </div>
-  </div>
-</div>
-<div class="comp-item">
-  <div class="comp-label">吸収率</div>
-  <div class="comp-row">
-    <div class="comp-col ours"><div class="comp-col-val">約15〜35%と高い</div></div>
-    <div class="comp-col theirs"><div class="comp-col-val">約2〜5%と低い</div></div>
-  </div>
-</div>
-<div class="comp-item">
-  <div class="comp-label">胃への負担</div>
-  <div class="comp-row">
-    <div class="comp-col ours"><div class="comp-col-val">ほぼなし。継続しやすい</div></div>
-    <div class="comp-col theirs"><div class="comp-col-val">胃痛・むかつきが起きやすい</div></div>
-  </div>
-</div>
-<div class="comp-item">
-  <div class="comp-label">飲みやすさ</div>
-  <div class="comp-row">
-    <div class="comp-col ours"><div class="comp-col-val">継続しやすい</div></div>
-    <div class="comp-col theirs"><div class="comp-col-val">胃が弱い方は飲みづらいことも</div></div>
-  </div>
-</div>
-<div class="comp-item">
-  <div class="comp-label">鉄臭さ</div>
-  <div class="comp-row">
-    <div class="comp-col ours"><div class="comp-col-val">少ない</div></div>
-    <div class="comp-col theirs"><div class="comp-col-val">独特の臭さが気になる場合も</div></div>
-  </div>
-</div>
+<table class="comp-table">
+  <tr>
+    <th>比較項目</th>
+    <th>ヘム鉄<br>（チュラビタ）</th>
+    <th>非ヘム鉄<br>（一般的）</th>
+  </tr>
+  <tr><td>原料</td><td>肉・魚由来</td><td>野菜・大豆由来</td></tr>
+  <tr><td>吸収率</td><td>約15〜35%</td><td>約2〜5%</td></tr>
+  <tr><td>胃への負担</td><td>ほぼなし</td><td>胃痛・むかつきが起きやすい</td></tr>
+  <tr><td>飲みやすさ</td><td>継続しやすい</td><td>胃が弱い方は飲みづらいことも</td></tr>
+  <tr><td>鉄臭さ</td><td>少ない</td><td>独特の臭さが気になる場合も</td></tr>
+</table>
 
-<div class="sub-title">こんな方に特におすすめ</div>
-<div class="list">
-  <div class="list-item">貧血気味・顔色が悪い・だるさが続く方</div>
-  <div class="list-item">生理前後に体がしんどくなる方</div>
-  <div class="list-item">以前の鉄サプリで胃が痛くなった経験がある方</div>
-  <div class="list-item">妊娠中・妊活中で鉄分を補いたい方</div>
-</div>
+<div class="subsection-title">こんな方に特におすすめ</div>
+<ul>
+  <li>貧血気味・顔色が悪い・だるさが続く方</li>
+  <li>生理前後に体がしんどくなる方</li>
+  <li>以前の鉄サプリで胃が痛くなった経験がある方</li>
+  <li>妊娠中・妊活中で鉄分を補いたい方</li>
+</ul>
 ```
 
   </div>
 </section>
 
-<!-- S4 ターゲット -->
+<!-- S4 -->
 
 <section id="s4">
   <div class="reveal">
     <div class="section-num">04</div>
     <h2 class="section-title">ターゲット</h2>
     <p>年齢・性別を問わず、幅広い方にご使用いただけるサプリメントです。</p>
-    <div class="row-cards">
-      <div class="row-card">
-        <div class="row-label">疲れやすい方・体力が落ちてきた方</div>
-        <div class="row-sub">ビタミンB群の血流促進・疲労回復効果</div>
-      </div>
-      <div class="row-card">
-        <div class="row-label">肌荒れ・ニキビ・アトピーが気になる方</div>
-        <div class="row-sub">ビオチン10倍配合で肌・爪・髪をケア</div>
-      </div>
-      <div class="row-card">
-        <div class="row-label">白髪・抜け毛が気になる方</div>
-        <div class="row-sub">ビタミンB群による頭皮の血流改善</div>
-      </div>
-      <div class="row-card">
-        <div class="row-label">鉄分不足・貧血気味の方</div>
-        <div class="row-sub">ヘム鉄で胃への負担なく補給</div>
-      </div>
-      <div class="row-card">
-        <div class="row-label">妊娠中・妊活中の方</div>
-        <div class="row-sub">葉酸・ヘム鉄でサポート（要医師相談）</div>
-      </div>
-      <div class="row-card">
-        <div class="row-label">お子様（小学生〜）</div>
-        <div class="row-sub">錠剤の数を少なめにして使用OK</div>
-      </div>
-      <div class="row-card">
-        <div class="row-label">健康維持・予防に取り組みたい方</div>
-        <div class="row-sub">日々の栄養バランスを整えるベーシックサプリとして</div>
-      </div>
-    </div>
-    <div class="sub-title">声がけキーワード例</div>
-    <div class="list">
-      <div class="list-item">「最近なんか疲れやすくて…」</div>
-      <div class="list-item">「肌が荒れやすい・ニキビが治りにくい」</div>
-      <div class="list-item">「白髪が増えてきた気がする」</div>
-      <div class="list-item">「冷え性がひどくて」</div>
-      <div class="list-item">「子供が落ち着きなくて困っている」</div>
-      <div class="list-item">「健康のために何か飲み始めたい」</div>
-    </div>
+    <table class="ing-table">
+      <tr><th>ターゲット</th><th colspan="2">訴求ポイント</th></tr>
+      <tr><td>疲れやすい方</td><td colspan="2">ビタミンB群の血流促進・疲労回復効果</td></tr>
+      <tr><td>肌荒れが気になる方</td><td colspan="2">ビオチン10倍配合で肌・爪・髪をケア</td></tr>
+      <tr><td>白髪・抜け毛が気になる方</td><td colspan="2">ビタミンB群による頭皮の血流改善</td></tr>
+      <tr><td>鉄分不足・貧血気味の方</td><td colspan="2">ヘム鉄で胃への負担なく補給</td></tr>
+      <tr><td>妊娠中・妊活中の方</td><td colspan="2">葉酸・ヘム鉄でサポート（要医師相談）</td></tr>
+      <tr><td>お子様（小学生〜）</td><td colspan="2">錠剤の数を少なめにして使用OK</td></tr>
+      <tr><td>健康維持・予防</td><td colspan="2">日々の栄養バランスを整えるベーシックサプリとして</td></tr>
+    </table>
+    <div class="subsection-title">声がけキーワード例</div>
+    <ul>
+      <li>「最近なんか疲れやすくて…」</li>
+      <li>「肌が荒れやすい・ニキビが治りにくい」</li>
+      <li>「白髪が増えてきた気がする」</li>
+      <li>「冷え性がひどくて」</li>
+      <li>「子供が落ち着きなくて困っている」</li>
+      <li>「健康のために何か飲み始めたい」</li>
+    </ul>
   </div>
 </section>
 
-<!-- S5 男性 -->
+<!-- S5 -->
 
 <section id="s5">
   <div class="reveal">
     <div class="section-num">05</div>
     <h2 class="section-title">男性の方へ</h2>
     <p>ビタミンB群×ヘム鉄の組み合わせは、働き盛りの男性が抱えやすいお悩みに幅広く対応します。</p>
-    <div class="row-cards">
-      <div class="row-card">
-        <div class="row-label">最近疲れが取れない・だるい</div>
-        <div class="row-sub">ビタミンB群が血流を促進し、エネルギー代謝をサポート</div>
-      </div>
-      <div class="row-card">
-        <div class="row-label">白髪が増えてきた</div>
-        <div class="row-sub">ビタミンB群による頭皮の血流改善で白髪・抜け毛対策</div>
-      </div>
-      <div class="row-card">
-        <div class="row-label">抜け毛・薄毛が気になる</div>
-        <div class="row-sub">血流促進で毛根への栄養供給をサポート</div>
-      </div>
-      <div class="row-card">
-        <div class="row-label">肌荒れ・ニキビが気になる</div>
-        <div class="row-sub">ビオチン10倍配合で肌・爪のコンディションを整える</div>
-      </div>
-      <div class="row-card">
-        <div class="row-label">冷えやむくみが気になる</div>
-        <div class="row-sub">ヘム鉄×ビタミンB群で血流改善・末端の冷え対策</div>
-      </div>
-      <div class="row-card">
-        <div class="row-label">健康維持・予防をしたい</div>
-        <div class="row-sub">日々の栄養バランスを手軽に補える</div>
-      </div>
-    </div>
+    <table class="ing-table">
+      <tr><th>お悩み</th><th colspan="2">期待できる効果</th></tr>
+      <tr><td>疲れが取れない・だるい</td><td colspan="2">ビタミンB群が血流を促進し、エネルギー代謝をサポート</td></tr>
+      <tr><td>白髪が増えてきた</td><td colspan="2">ビタミンB群による頭皮の血流改善で白髪・抜け毛対策</td></tr>
+      <tr><td>抜け毛・薄毛が気になる</td><td colspan="2">血流促進で毛根への栄養供給をサポート</td></tr>
+      <tr><td>肌荒れ・ニキビ</td><td colspan="2">ビオチン10倍配合で肌・爪のコンディションを整える</td></tr>
+      <tr><td>冷えやむくみ</td><td colspan="2">ヘム鉄×ビタミンB群で血流改善・末端の冷え対策</td></tr>
+      <tr><td>健康維持・予防</td><td colspan="2">日々の栄養バランスを手軽に補える</td></tr>
+    </table>
   </div>
 </section>
 
-<!-- S6 女性 -->
+<!-- S6 -->
 
 <section id="s6">
   <div class="reveal">
     <div class="section-num">06</div>
     <h2 class="section-title">女性の方へ</h2>
     <p>ヘム鉄・葉酸・ビオチンを配合し、女性特有のお悩みにも幅広く対応します。</p>
-    <div class="row-cards">
-      <div class="row-card">
-        <div class="row-label">なんとなくだるい・疲れやすい</div>
-        <div class="row-sub">ビタミンB群×ヘム鉄で鉄分不足・貧血をサポート</div>
-      </div>
-      <div class="row-card">
-        <div class="row-label">生理前後のだるさ・貧血</div>
-        <div class="row-sub">ヘム鉄が胃への負担なく鉄分を補給</div>
-      </div>
-      <div class="row-card">
-        <div class="row-label">肌荒れ・ニキビ・アトピー</div>
-        <div class="row-sub">ビオチン10倍配合で肌・爪・髪を内側からケア</div>
-      </div>
-      <div class="row-card">
-        <div class="row-label">冷え性がひどい</div>
-        <div class="row-sub">血流促進で末端まで温かく</div>
-      </div>
-      <div class="row-card">
-        <div class="row-label">白髪・抜け毛が気になる</div>
-        <div class="row-sub">ビタミンB群で頭皮の血流を改善</div>
-      </div>
-      <div class="row-card">
-        <div class="row-label">妊娠中・妊活中</div>
-        <div class="row-sub">葉酸・ヘム鉄を配合（持病がある方は医師に相談）</div>
-      </div>
-    </div>
+    <table class="ing-table">
+      <tr><th>お悩み</th><th colspan="2">期待できる効果</th></tr>
+      <tr><td>だるい・疲れやすい</td><td colspan="2">ビタミンB群×ヘム鉄で鉄分不足・貧血をサポート</td></tr>
+      <tr><td>生理前後のだるさ・貧血</td><td colspan="2">ヘム鉄が胃への負担なく鉄分を補給</td></tr>
+      <tr><td>肌荒れ・ニキビ・アトピー</td><td colspan="2">ビオチン10倍配合で肌・爪・髪を内側からケア</td></tr>
+      <tr><td>冷え性がひどい</td><td colspan="2">血流促進で末端まで温かく</td></tr>
+      <tr><td>白髪・抜け毛</td><td colspan="2">ビタミンB群で頭皮の血流を改善</td></tr>
+      <tr><td>妊娠中・妊活中</td><td colspan="2">葉酸・ヘム鉄を配合（持病がある方は医師に相談）</td></tr>
+    </table>
   </div>
 </section>
 
-<!-- S7 競合 -->
+<!-- S7 -->
 
 <section id="s7">
   <div class="reveal">
     <div class="section-num">07</div>
     <h2 class="section-title">競合優位性</h2>
     <p>エステ業界でビタミンB群を主軸にしたサプリはほぼ存在しない。</p>
-
-```
-<div class="comp-item">
-  <div class="comp-label">主成分</div>
-  <div class="comp-row">
-    <div class="comp-col ours">
-      <div class="comp-col-head">チュラビタ</div>
-      <div class="comp-col-val">B群＋ヘム鉄＋葉酸＋ビオチン</div>
-    </div>
-    <div class="comp-col theirs">
-      <div class="comp-col-head">一般的なエステ系</div>
-      <div class="comp-col-val">コラーゲン・VC・プラセンタが多い</div>
-    </div>
-  </div>
-</div>
-<div class="comp-item">
-  <div class="comp-label">ターゲット</div>
-  <div class="comp-row">
-    <div class="comp-col ours"><div class="comp-col-val">老若男女問わず幅広い層に対応</div></div>
-    <div class="comp-col theirs"><div class="comp-col-val">美白・エイジングケアに偏りがち</div></div>
-  </div>
-</div>
-<div class="comp-item">
-  <div class="comp-label">安全性</div>
-  <div class="comp-row">
-    <div class="comp-col ours"><div class="comp-col-val">子供向けベース・1年以上の実績</div></div>
-    <div class="comp-col theirs"><div class="comp-col-val">実績データが少ないものも多い</div></div>
-  </div>
-</div>
-<div class="comp-item">
-  <div class="comp-label">価格帯</div>
-  <div class="comp-row">
-    <div class="comp-col ours"><div class="comp-col-val">5,800〜7,500円</div></div>
-    <div class="comp-col theirs"><div class="comp-col-val">同価格帯〜それ以上</div></div>
-  </div>
-</div>
-<div class="comp-item">
-  <div class="comp-label">ビタミンB群の量</div>
-  <div class="comp-row">
-    <div class="comp-col ours"><div class="comp-col-val">黄金バランスで高配合</div></div>
-    <div class="comp-col theirs"><div class="comp-col-val">少量が多い</div></div>
-  </div>
-</div>
-
-<div class="sub-title">差別化ポイントまとめ</div>
-<div class="list">
-  <div class="list-item">「体の内側からケア」はエステ業界でほぼ未使用のコンセプト</div>
-  <div class="list-item">ヘム鉄＋葉酸の組み合わせは女性サプリとして非常に理にかなっている</div>
-  <div class="list-item">ビオチン10倍配合は他にない強み</div>
-  <div class="list-item">子供向けで実証されたベース処方の安全性・信頼性</div>
-  <div class="list-item">美容室・エステどちらでも販売できる汎用性</div>
-</div>
-```
-
+    <table class="comp-table">
+      <tr>
+        <th>項目</th>
+        <th>チュラビタ</th>
+        <th>一般的なエステ系サプリ</th>
+      </tr>
+      <tr><td>主成分</td><td>B群＋ヘム鉄＋葉酸＋ビオチン</td><td>コラーゲン・VC・プラセンタが多い</td></tr>
+      <tr><td>ターゲット</td><td>老若男女問わず幅広い</td><td>美白・エイジングに偏りがち</td></tr>
+      <tr><td>安全性</td><td>子供向けベース・1年以上の実績</td><td>実績データが少ないものも多い</td></tr>
+      <tr><td>価格帯</td><td>5,800〜7,500円</td><td>同価格帯〜それ以上</td></tr>
+      <tr><td>B群の量</td><td>黄金バランスで高配合</td><td>少量が多い</td></tr>
+    </table>
+    <div class="subsection-title">差別化ポイントまとめ</div>
+    <ul>
+      <li>「体の内側からケア」はエステ業界でほぼ未使用のコンセプト</li>
+      <li>ヘム鉄＋葉酸の組み合わせは女性サプリとして非常に理にかなっている</li>
+      <li>ビオチン10倍配合は他にない強み</li>
+      <li>子供向けで実証されたベース処方の安全性・信頼性</li>
+      <li>美容室・エステどちらでも販売できる汎用性</li>
+    </ul>
   </div>
 </section>
 
-<!-- S8 FAQ -->
+<!-- S8 -->
 
 <section id="s8">
   <div class="reveal">
@@ -1118,7 +1086,7 @@ box-shadow: 0 2px 12px rgba(139,123,174,0.12);
   </div>
 </section>
 
-<!-- S9 飲み方 -->
+<!-- S9 -->
 
 <section id="s9">
   <div class="reveal">
@@ -1134,21 +1102,21 @@ box-shadow: 0 2px 12px rgba(139,123,174,0.12);
       <div class="timing-main">夕食後または就寝前に飲む</div>
       <div class="timing-reason">疲れを翌日に残したくないとき。寝ている間に体の回復をサポート。</div>
     </div>
-    <div class="sub-title">飲み方の注意点</div>
-    <div class="list">
-      <div class="list-item">空腹時は胃への刺激になる場合があるため、必ず食後に飲む</div>
-      <div class="list-item">7粒を一度に飲むのが基本。分割してもOK</div>
-      <div class="list-item">おしっこが黄色になるのは正常（B2の色素が排出されている）</div>
-      <div class="list-item">体が栄養を必要としているときはほぼ吸収され、黄色くなりにくい</div>
-      <div class="list-item">鉄サプリや栄養ドリンクとの併用は成分重複に注意</div>
-    </div>
+    <div class="subsection-title">飲み方の注意点</div>
+    <ul>
+      <li>空腹時は胃への刺激になる場合があるため、必ず食後に飲む</li>
+      <li>7粒を一度に飲むのが基本。分割してもOK</li>
+      <li>おしっこが黄色になるのは正常（B2の色素が排出されている）</li>
+      <li>体が栄養を必要としているときはほぼ吸収され、黄色くなりにくい</li>
+      <li>鉄サプリや栄養ドリンクとの併用は成分重複に注意</li>
+    </ul>
   </div>
 </section>
 
 <!-- COLOPHON -->
 
 <div class="colophon">
-  <div class="colophon-deco">✦</div>
+  <div class="colophon-deco"><span>✦</span></div>
   <div class="colophon-logo">CHURA<span>BITA</span></div>
   <div class="colophon-tagline">〜 内側から整える 〜</div>
   <div class="colophon-copy">社内研修用資料　©ブーケティエ</div>
@@ -1162,7 +1130,7 @@ box-shadow: 0 2px 12px rgba(139,123,174,0.12);
     entries.forEach(e => {
       if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
     });
-  }, { threshold: 0.06 });
+  }, { threshold: 0.08 });
   reveals.forEach(el => io.observe(el));
 
   document.querySelectorAll('.faq-q').forEach(q => {
@@ -1170,7 +1138,7 @@ box-shadow: 0 2px 12px rgba(139,123,174,0.12);
   });
 
   const btn = document.getElementById('backTop');
-  window.addEventListener('scroll', () => btn.classList.toggle('visible', window.scrollY > 300));
+  window.addEventListener('scroll', () => btn.classList.toggle('visible', window.scrollY > 400));
 </script>
 
 </body>
