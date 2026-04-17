@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
@@ -26,704 +25,702 @@
     --border-gold: rgba(184,150,90,0.25);
   }
 
-- { margin: 0; padding: 0; box-sizing: border-box; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
 
-body {
-background: var(–white);
-color: var(–text);
-font-family: ‘Noto Sans JP’, sans-serif;
-font-weight: 300;
-line-height: 1.8;
--webkit-font-smoothing: antialiased;
-}
-
-/* ── HERO ── */
-.hero {
-min-height: 100svh;
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-text-align: center;
-padding: 80px 24px;
-position: relative;
-overflow: hidden;
-background:
-radial-gradient(ellipse at 60% 0%, rgba(212,176,122,0.12) 0%, transparent 55%),
-radial-gradient(ellipse at 20% 100%, rgba(169,155,199,0.18) 0%, transparent 55%),
-linear-gradient(160deg, #FDFCFF 0%, #F5F2FB 50%, #FBF8F2 100%);
-}
-
-.hero::before {
-content: ‘’;
-position: absolute;
-top: -60px; right: -60px;
-width: 300px; height: 300px;
-border-radius: 50%;
-background: radial-gradient(circle, rgba(212,176,122,0.08) 0%, transparent 70%);
-pointer-events: none;
-}
-
-.hero::after {
-content: ‘’;
-position: absolute;
-bottom: -80px; left: -40px;
-width: 360px; height: 360px;
-border-radius: 50%;
-background: radial-gradient(circle, rgba(139,123,174,0.1) 0%, transparent 70%);
-pointer-events: none;
-}
-
-.hero-badge {
-font-family: ‘Cormorant Garamond’, serif;
-font-size: 10px;
-letter-spacing: 0.38em;
-color: var(–purple-light);
-text-transform: uppercase;
-margin-bottom: 36px;
-opacity: 0;
-animation: fadeUp 0.9s 0.2s forwards;
-}
-
-.hero-logo {
-font-family: ‘Cormorant Garamond’, serif;
-font-size: clamp(48px, 15vw, 86px);
-font-weight: 300;
-letter-spacing: 0.14em;
-color: var(–text);
-line-height: 1;
-margin-bottom: 6px;
-opacity: 0;
-animation: fadeUp 0.9s 0.4s forwards;
-}
-
-.hero-logo span {
-color: var(–gold);
-}
-
-.hero-sub {
-font-size: 12px;
-letter-spacing: 0.3em;
-color: var(–text-dim);
-margin-bottom: 36px;
-opacity: 0;
-animation: fadeUp 0.9s 0.55s forwards;
-}
-
-.hero-divider {
-display: flex;
-align-items: center;
-gap: 14px;
-margin-bottom: 24px;
-opacity: 0;
-animation: fadeUp 0.9s 0.7s forwards;
-}
-
-.hero-divider::before,
-.hero-divider::after {
-content: ‘’;
-width: 40px;
-height: 1px;
-background: linear-gradient(to right, transparent, var(–gold-pale));
-}
-
-.hero-divider::after {
-background: linear-gradient(to left, transparent, var(–gold-pale));
-}
-
-.hero-tagline {
-font-family: ‘Cormorant Garamond’, serif;
-font-style: italic;
-font-size: clamp(15px, 4vw, 20px);
-color: var(–purple);
-letter-spacing: 0.08em;
-margin-bottom: 64px;
-opacity: 0;
-animation: fadeUp 0.9s 0.7s forwards;
-}
-
-.hero-scroll {
-display: flex;
-flex-direction: column;
-align-items: center;
-gap: 8px;
-opacity: 0;
-animation: fadeUp 0.9s 1s forwards;
-}
-
-.hero-scroll span {
-font-size: 9px;
-letter-spacing: 0.3em;
-color: var(–text-dim);
-text-transform: uppercase;
-}
-
-.hero-scroll-line {
-width: 1px;
-height: 48px;
-background: linear-gradient(to bottom, var(–gold-light), transparent);
-animation: lineDown 1.5s 1.5s ease-in-out infinite;
-}
-
-@keyframes lineDown {
-0%   { transform: scaleY(0); transform-origin: top; opacity: 1; }
-50%  { transform: scaleY(1); transform-origin: top; opacity: 1; }
-51%  { transform: scaleY(1); transform-origin: bottom; }
-100% { transform: scaleY(0); transform-origin: bottom; opacity: 0; }
-}
-
-/* ── TOC ── */
-.toc {
-background: var(–cream);
-border-top: 1px solid var(–border-gold);
-border-bottom: 1px solid var(–border-gold);
-padding: 36px 24px;
-}
-
-.toc-title {
-font-family: ‘Cormorant Garamond’, serif;
-font-size: 10px;
-letter-spacing: 0.4em;
-color: var(–gold);
-text-transform: uppercase;
-margin-bottom: 20px;
-}
-
-.toc-grid {
-display: grid;
-grid-template-columns: 1fr 1fr;
-gap: 6px 20px;
-}
-
-.toc-item {
-color: var(–text-mid);
-font-size: 12px;
-letter-spacing: 0.04em;
-text-decoration: none;
-padding: 7px 0;
-border-bottom: 1px solid var(–border);
-transition: color 0.2s;
-display: flex;
-align-items: center;
-gap: 8px;
-}
-
-.toc-item:hover { color: var(–purple); }
-
-.toc-num {
-font-family: ‘Cormorant Garamond’, serif;
-font-size: 10px;
-color: var(–gold);
-min-width: 16px;
-}
-
-/* ── SECTIONS ── */
-section {
-padding: 64px 24px;
-border-bottom: 1px solid var(–border);
-background: var(–white);
-}
-
-section:nth-child(even) {
-background: var(–purple-soft);
-}
-
-.section-num {
-font-family: ‘Cormorant Garamond’, serif;
-font-size: 80px;
-font-weight: 300;
-color: rgba(139,123,174,0.07);
-line-height: 1;
-margin-bottom: -22px;
-letter-spacing: -0.02em;
-}
-
-.section-title {
-font-family: ‘Cormorant Garamond’, serif;
-font-size: clamp(22px, 6vw, 30px);
-font-weight: 400;
-color: var(–text);
-letter-spacing: 0.06em;
-margin-bottom: 28px;
-padding-bottom: 16px;
-position: relative;
-}
-
-.section-title::after {
-content: ‘’;
-position: absolute;
-bottom: 0; left: 0;
-width: 100%;
-height: 1px;
-background: linear-gradient(to right, var(–gold-light), var(–purple-pale), transparent);
-}
-
-.subsection-title {
-font-size: 10px;
-font-weight: 500;
-color: var(–purple);
-letter-spacing: 0.22em;
-margin: 28px 0 12px;
-text-transform: uppercase;
-display: flex;
-align-items: center;
-gap: 10px;
-}
-
-.subsection-title::before {
-content: ‘’;
-width: 18px;
-height: 1px;
-background: var(–gold-light);
-flex-shrink: 0;
-}
-
-p {
-font-size: 13.5px;
-color: var(–text-mid);
-line-height: 1.9;
-margin-bottom: 16px;
-}
-
-/* ── PRODUCT TABLE ── */
-.product-table {
-width: 100%;
-border-collapse: collapse;
-margin: 8px 0 8px;
-border: 1px solid var(–border);
-border-radius: 4px;
-overflow: hidden;
-}
-
-.product-table tr {
-border-bottom: 1px solid var(–border);
-}
-
-.product-table tr:last-child { border-bottom: none; }
-
-.product-table td:first-child {
-background: linear-gradient(135deg, var(–purple-faint), var(–cream));
-color: var(–purple);
-font-size: 10px;
-font-weight: 500;
-letter-spacing: 0.14em;
-padding: 15px 14px;
-width: 28%;
-vertical-align: middle;
-text-align: center;
-border-right: 1px solid var(–border);
-}
-
-.product-table td:last-child {
-padding: 15px 16px;
-font-size: 13px;
-color: var(–text);
-vertical-align: middle;
-}
-
-/* ── INGREDIENT TABLE ── */
-.ing-table {
-width: 100%;
-border-collapse: collapse;
-margin: 10px 0 24px;
-font-size: 12px;
-border: 1px solid var(–border);
-overflow: hidden;
-border-radius: 2px;
-}
-
-.ing-table th {
-background: linear-gradient(135deg, var(–purple-faint), var(–cream));
-color: var(–purple);
-font-size: 10px;
-font-weight: 500;
-letter-spacing: 0.15em;
-padding: 10px 10px;
-text-align: left;
-border-bottom: 1px solid var(–border);
-}
-
-.ing-table td {
-padding: 11px 10px;
-border-bottom: 1px solid var(–border);
-color: var(–text-mid);
-vertical-align: top;
-line-height: 1.6;
-}
-
-.ing-table tr:last-child td { border-bottom: none; }
-
-.ing-table td:first-child {
-color: var(–text);
-font-weight: 500;
-width: 26%;
-}
-
-.ing-table td:nth-child(2) {
-color: var(–gold);
-white-space: nowrap;
-width: 16%;
-font-weight: 400;
-}
-
-.ing-table td:last-child {
-font-size: 11px;
-color: var(–text-dim);
-}
-
-/* ── CATEGORY BADGE ── */
-.category-badge {
-display: inline-flex;
-align-items: center;
-gap: 8px;
-background: var(–purple-faint);
-border: 1px solid var(–purple-pale);
-border-radius: 2px;
-padding: 5px 14px;
-font-size: 11px;
-color: var(–purple);
-letter-spacing: 0.1em;
-margin-bottom: 12px;
-font-weight: 400;
-}
-
-/* ── LISTS ── */
-ul {
-list-style: none;
-margin: 0 0 20px;
-padding: 0;
-}
-
-ul li {
-font-size: 13px;
-color: var(–text-mid);
-padding: 8px 0 8px 20px;
-position: relative;
-border-bottom: 1px solid var(–border);
-line-height: 1.7;
-}
-
-ul li:last-child { border-bottom: none; }
-
-ul li::before {
-content: ‘—’;
-position: absolute;
-left: 0;
-color: var(–gold-light);
-font-family: ‘Cormorant Garamond’, serif;
-}
-
-/* ── COMPARISON TABLE ── */
-.comp-table {
-width: 100%;
-border-collapse: collapse;
-margin: 12px 0 24px;
-font-size: 12px;
-border: 1px solid var(–border);
-border-radius: 2px;
-overflow: hidden;
-}
-
-.comp-table th {
-padding: 10px 8px;
-font-size: 10px;
-letter-spacing: 0.1em;
-font-weight: 500;
-text-align: center;
-border-bottom: 1px solid var(–border);
-}
-
-.comp-table th:first-child {
-color: var(–text-dim);
-text-align: left;
-background: var(–off-white);
-width: 26%;
-}
-
-.comp-table th:nth-child(2) {
-background: linear-gradient(135deg, var(–purple-faint), var(–cream));
-color: var(–purple);
-}
-
-.comp-table th:last-child {
-color: var(–text-dim);
-background: var(–off-white);
-}
-
-.comp-table td {
-padding: 11px 8px;
-border-bottom: 1px solid var(–border);
-vertical-align: top;
-line-height: 1.5;
-}
-
-.comp-table tr:last-child td { border-bottom: none; }
-
-.comp-table td:first-child {
-color: var(–text-dim);
-font-size: 11px;
-background: var(–off-white);
-}
-
-.comp-table td:nth-child(2) {
-background: rgba(212,205,234,0.08);
-color: var(–text);
-font-size: 11px;
-}
-
-.comp-table td:last-child {
-color: var(–text-dim);
-font-size: 11px;
-}
-
-/* ── FAQ ── */
-.faq-item {
-border: 1px solid var(–border);
-border-radius: 4px;
-margin-bottom: 8px;
-overflow: hidden;
-background: var(–white);
-}
-
-.faq-q {
-background: var(–white);
-padding: 16px 44px 16px 16px;
-font-size: 13px;
-color: var(–text);
-cursor: pointer;
-display: flex;
-align-items: flex-start;
-gap: 12px;
-position: relative;
-user-select: none;
-transition: background 0.2s;
-}
-
-.faq-q:hover { background: var(–purple-soft); }
-
-.faq-q::after {
-content: ‘+’;
-position: absolute;
-right: 16px;
-top: 50%;
-transform: translateY(-50%);
-color: var(–purple-light);
-font-family: ‘Cormorant Garamond’, serif;
-font-size: 22px;
-line-height: 1;
-transition: transform 0.25s;
-}
-
-.faq-item.open .faq-q::after {
-transform: translateY(-50%) rotate(45deg);
-}
-
-.faq-qlabel {
-color: var(–gold);
-font-family: ‘Cormorant Garamond’, serif;
-font-size: 18px;
-line-height: 1.1;
-flex-shrink: 0;
-}
-
-.faq-a {
-display: none;
-padding: 14px 16px 16px 42px;
-font-size: 12.5px;
-color: var(–text-mid);
-line-height: 1.85;
-border-top: 1px solid var(–border);
-background: var(–purple-soft);
-}
-
-.faq-item.open .faq-a { display: block; }
-
-/* ── TIMING CARDS ── */
-.timing-card {
-background: var(–white);
-border: 1px solid var(–border);
-border-left: 3px solid var(–gold-light);
-border-radius: 2px;
-padding: 20px 20px;
-margin-bottom: 12px;
-}
-
-.timing-tag {
-font-family: ‘Cormorant Garamond’, serif;
-font-size: 10px;
-letter-spacing: 0.3em;
-color: var(–gold);
-text-transform: uppercase;
-margin-bottom: 6px;
-}
-
-.timing-main {
-font-size: 15px;
-color: var(–text);
-font-weight: 500;
-margin-bottom: 6px;
-letter-spacing: 0.02em;
-}
-
-.timing-reason {
-font-size: 12px;
-color: var(–text-dim);
-line-height: 1.75;
-}
-
-/* ── BIOTIN CARDS ── */
-.biotin-cards {
-display: flex;
-flex-direction: column;
-gap: 8px;
-margin: 10px 0 24px;
-}
-
-.biotin-card {
-background: var(–white);
-border: 1px solid var(–border);
-border-left: 3px solid var(–purple-pale);
-border-radius: 2px;
-padding: 14px 16px;
-}
-
-.biotin-label {
-font-size: 11px;
-font-weight: 500;
-color: var(–purple);
-letter-spacing: 0.12em;
-margin-bottom: 5px;
-white-space: nowrap;
-}
-
-.biotin-body {
-font-size: 13px;
-color: var(–text-mid);
-line-height: 1.75;
-}
-
-/* ── NOTE ── */
-.note {
-background: var(–purple-faint);
-border-left: 2px solid var(–purple-pale);
-padding: 13px 16px;
-margin: 16px 0;
-font-size: 12px;
-color: var(–text-mid);
-line-height: 1.75;
-border-radius: 0 2px 2px 0;
-}
-
-/* ── COLOPHON ── */
-.colophon {
-background: linear-gradient(160deg, var(–purple-soft) 0%, var(–cream) 100%);
-text-align: center;
-padding: 56px 24px;
-border-top: 1px solid var(–border-gold);
-}
-
-.colophon-deco {
-display: flex;
-align-items: center;
-justify-content: center;
-gap: 16px;
-margin-bottom: 24px;
-}
-
-.colophon-deco::before,
-.colophon-deco::after {
-content: ‘’;
-width: 48px;
-height: 1px;
-background: linear-gradient(to right, transparent, var(–gold-pale));
-}
-
-.colophon-deco::after {
-background: linear-gradient(to left, transparent, var(–gold-pale));
-}
-
-.colophon-deco span {
-color: var(–gold-pale);
-font-family: ‘Cormorant Garamond’, serif;
-font-size: 14px;
-}
-
-.colophon-logo {
-font-family: ‘Cormorant Garamond’, serif;
-font-size: 32px;
-font-weight: 300;
-letter-spacing: 0.18em;
-color: var(–text);
-margin-bottom: 6px;
-}
-
-.colophon-logo span { color: var(–gold); }
-
-.colophon-tagline {
-font-family: ‘Cormorant Garamond’, serif;
-font-style: italic;
-font-size: 14px;
-color: var(–purple-light);
-letter-spacing: 0.1em;
-margin-bottom: 20px;
-}
-
-.colophon-copy {
-font-size: 10px;
-color: var(–text-dim);
-letter-spacing: 0.12em;
-}
-
-/* ── ANIMATIONS ── */
-@keyframes fadeUp {
-from { opacity: 0; transform: translateY(14px); }
-to   { opacity: 1; transform: translateY(0); }
-}
-
-.reveal {
-opacity: 0;
-transform: translateY(18px);
-transition: opacity 0.65s ease, transform 0.65s ease;
-}
-
-.reveal.visible {
-opacity: 1;
-transform: none;
-}
-
-/* ── BACK TO TOP ── */
-.back-top {
-position: fixed;
-bottom: 24px;
-right: 20px;
-width: 40px;
-height: 40px;
-background: var(–white);
-border: 1px solid var(–border-gold);
-border-radius: 50%;
-color: var(–gold);
-font-size: 16px;
-cursor: pointer;
-display: flex;
-align-items: center;
-justify-content: center;
-opacity: 0;
-transition: opacity 0.3s, background 0.2s;
-z-index: 100;
-font-family: ‘Cormorant Garamond’, serif;
-box-shadow: 0 2px 16px rgba(139,123,174,0.12);
-}
-
-.back-top:hover { background: var(–purple-soft); }
-.back-top.visible { opacity: 1; }
+  body {
+    background: var(--white);
+    color: var(--text);
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 300;
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 80px 24px;
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(ellipse at 60% 0%, rgba(212,176,122,0.12) 0%, transparent 55%),
+      radial-gradient(ellipse at 20% 100%, rgba(169,155,199,0.18) 0%, transparent 55%),
+      linear-gradient(160deg, #FDFCFF 0%, #F5F2FB 50%, #FBF8F2 100%);
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(212,176,122,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: -40px;
+    width: 360px; height: 360px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(139,123,174,0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-badge {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 10px;
+    letter-spacing: 0.38em;
+    color: var(--purple-light);
+    text-transform: uppercase;
+    margin-bottom: 36px;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.2s forwards;
+  }
+
+  .hero-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(48px, 15vw, 86px);
+    font-weight: 300;
+    letter-spacing: 0.14em;
+    color: var(--text);
+    line-height: 1;
+    margin-bottom: 6px;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.4s forwards;
+  }
+
+  .hero-logo span {
+    color: var(--gold);
+  }
+
+  .hero-sub {
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    color: var(--text-dim);
+    margin-bottom: 36px;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.55s forwards;
+  }
+
+  .hero-divider {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.7s forwards;
+  }
+
+  .hero-divider::before,
+  .hero-divider::after {
+    content: '';
+    width: 40px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold-pale));
+  }
+
+  .hero-divider::after {
+    background: linear-gradient(to left, transparent, var(--gold-pale));
+  }
+
+  .hero-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(15px, 4vw, 20px);
+    color: var(--purple);
+    letter-spacing: 0.08em;
+    margin-bottom: 64px;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.7s forwards;
+  }
+
+  .hero-scroll {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    animation: fadeUp 0.9s 1s forwards;
+  }
+
+  .hero-scroll span {
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+  }
+
+  .hero-scroll-line {
+    width: 1px;
+    height: 48px;
+    background: linear-gradient(to bottom, var(--gold-light), transparent);
+    animation: lineDown 1.5s 1.5s ease-in-out infinite;
+  }
+
+  @keyframes lineDown {
+    0%   { transform: scaleY(0); transform-origin: top; opacity: 1; }
+    50%  { transform: scaleY(1); transform-origin: top; opacity: 1; }
+    51%  { transform: scaleY(1); transform-origin: bottom; }
+    100% { transform: scaleY(0); transform-origin: bottom; opacity: 0; }
+  }
+
+  /* ── TOC ── */
+  .toc {
+    background: var(--cream);
+    border-top: 1px solid var(--border-gold);
+    border-bottom: 1px solid var(--border-gold);
+    padding: 36px 24px;
+  }
+
+  .toc-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .toc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 20px;
+  }
+
+  .toc-item {
+    color: var(--text-mid);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    padding: 7px 0;
+    border-bottom: 1px solid var(--border);
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .toc-item:hover { color: var(--purple); }
+
+  .toc-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 10px;
+    color: var(--gold);
+    min-width: 16px;
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    padding: 64px 24px;
+    border-bottom: 1px solid var(--border);
+    background: var(--white);
+  }
+
+  section:nth-child(even) {
+    background: var(--purple-soft);
+  }
+
+  .section-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 80px;
+    font-weight: 300;
+    color: rgba(139,123,174,0.07);
+    line-height: 1;
+    margin-bottom: -22px;
+    letter-spacing: -0.02em;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(22px, 6vw, 30px);
+    font-weight: 400;
+    color: var(--text);
+    letter-spacing: 0.06em;
+    margin-bottom: 28px;
+    padding-bottom: 16px;
+    position: relative;
+  }
+
+  .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, var(--gold-light), var(--purple-pale), transparent);
+  }
+
+  .subsection-title {
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--purple);
+    letter-spacing: 0.22em;
+    margin: 28px 0 12px;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .subsection-title::before {
+    content: '';
+    width: 18px;
+    height: 1px;
+    background: var(--gold-light);
+    flex-shrink: 0;
+  }
+
+  p {
+    font-size: 13.5px;
+    color: var(--text-mid);
+    line-height: 1.9;
+    margin-bottom: 16px;
+  }
+
+  /* ── PRODUCT TABLE ── */
+  .product-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 8px 0 8px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .product-table tr {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .product-table tr:last-child { border-bottom: none; }
+
+  .product-table td:first-child {
+    background: linear-gradient(135deg, var(--purple-faint), var(--cream));
+    color: var(--purple);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    padding: 15px 14px;
+    width: 28%;
+    vertical-align: middle;
+    text-align: center;
+    border-right: 1px solid var(--border);
+  }
+
+  .product-table td:last-child {
+    padding: 15px 16px;
+    font-size: 13px;
+    color: var(--text);
+    vertical-align: middle;
+  }
+
+  /* ── INGREDIENT TABLE ── */
+  .ing-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0 24px;
+    font-size: 12px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    border-radius: 2px;
+  }
+
+  .ing-table th {
+    background: linear-gradient(135deg, var(--purple-faint), var(--cream));
+    color: var(--purple);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    padding: 10px 10px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .ing-table td {
+    padding: 11px 10px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-mid);
+    vertical-align: top;
+    line-height: 1.6;
+  }
+
+  .ing-table tr:last-child td { border-bottom: none; }
+
+  .ing-table td:first-child {
+    color: var(--text);
+    font-weight: 500;
+    width: 26%;
+  }
+
+  .ing-table td:nth-child(2) {
+    color: var(--gold);
+    white-space: nowrap;
+    width: 16%;
+    font-weight: 400;
+  }
+
+  .ing-table td:last-child {
+    font-size: 11px;
+    color: var(--text-dim);
+  }
+
+  /* ── CATEGORY BADGE ── */
+  .category-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--purple-faint);
+    border: 1px solid var(--purple-pale);
+    border-radius: 2px;
+    padding: 5px 14px;
+    font-size: 11px;
+    color: var(--purple);
+    letter-spacing: 0.1em;
+    margin-bottom: 12px;
+    font-weight: 400;
+  }
+
+  /* ── LISTS ── */
+  ul {
+    list-style: none;
+    margin: 0 0 20px;
+    padding: 0;
+  }
+
+  ul li {
+    font-size: 13px;
+    color: var(--text-mid);
+    padding: 8px 0 8px 20px;
+    position: relative;
+    border-bottom: 1px solid var(--border);
+    line-height: 1.7;
+  }
+
+  ul li:last-child { border-bottom: none; }
+
+  ul li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--gold-light);
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  /* ── COMPARISON TABLE ── */
+  .comp-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0 24px;
+    font-size: 12px;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .comp-table th {
+    padding: 10px 8px;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    font-weight: 500;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .comp-table th:first-child {
+    color: var(--text-dim);
+    text-align: left;
+    background: var(--off-white);
+    width: 26%;
+  }
+
+  .comp-table th:nth-child(2) {
+    background: linear-gradient(135deg, var(--purple-faint), var(--cream));
+    color: var(--purple);
+  }
+
+  .comp-table th:last-child {
+    color: var(--text-dim);
+    background: var(--off-white);
+  }
+
+  .comp-table td {
+    padding: 11px 8px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+
+  .comp-table tr:last-child td { border-bottom: none; }
+
+  .comp-table td:first-child {
+    color: var(--text-dim);
+    font-size: 11px;
+    background: var(--off-white);
+  }
+
+  .comp-table td:nth-child(2) {
+    background: rgba(212,205,234,0.08);
+    color: var(--text);
+    font-size: 11px;
+  }
+
+  .comp-table td:last-child {
+    color: var(--text-dim);
+    font-size: 11px;
+  }
+
+  /* ── FAQ ── */
+  .faq-item {
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    margin-bottom: 8px;
+    overflow: hidden;
+    background: var(--white);
+  }
+
+  .faq-q {
+    background: var(--white);
+    padding: 16px 44px 16px 16px;
+    font-size: 13px;
+    color: var(--text);
+    cursor: pointer;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    position: relative;
+    user-select: none;
+    transition: background 0.2s;
+  }
+
+  .faq-q:hover { background: var(--purple-soft); }
+
+  .faq-q::after {
+    content: '+';
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--purple-light);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    line-height: 1;
+    transition: transform 0.25s;
+  }
+
+  .faq-item.open .faq-q::after {
+    transform: translateY(-50%) rotate(45deg);
+  }
+
+  .faq-qlabel {
+    color: var(--gold);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    line-height: 1.1;
+    flex-shrink: 0;
+  }
+
+  .faq-a {
+    display: none;
+    padding: 14px 16px 16px 42px;
+    font-size: 12.5px;
+    color: var(--text-mid);
+    line-height: 1.85;
+    border-top: 1px solid var(--border);
+    background: var(--purple-soft);
+  }
+
+  .faq-item.open .faq-a { display: block; }
+
+  /* ── TIMING CARDS ── */
+  .timing-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--gold-light);
+    border-radius: 2px;
+    padding: 20px 20px;
+    margin-bottom: 12px;
+  }
+
+  .timing-tag {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .timing-main {
+    font-size: 15px;
+    color: var(--text);
+    font-weight: 500;
+    margin-bottom: 6px;
+    letter-spacing: 0.02em;
+  }
+
+  .timing-reason {
+    font-size: 12px;
+    color: var(--text-dim);
+    line-height: 1.75;
+  }
+
+  /* ── BIOTIN CARDS ── */
+  .biotin-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 10px 0 24px;
+  }
+
+  .biotin-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--purple-pale);
+    border-radius: 2px;
+    padding: 14px 16px;
+  }
+
+  .biotin-label {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--purple);
+    letter-spacing: 0.12em;
+    margin-bottom: 5px;
+    white-space: nowrap;
+  }
+
+  .biotin-body {
+    font-size: 13px;
+    color: var(--text-mid);
+    line-height: 1.75;
+  }
+
+  /* ── NOTE ── */
+  .note {
+    background: var(--purple-faint);
+    border-left: 2px solid var(--purple-pale);
+    padding: 13px 16px;
+    margin: 16px 0;
+    font-size: 12px;
+    color: var(--text-mid);
+    line-height: 1.75;
+    border-radius: 0 2px 2px 0;
+  }
+
+  /* ── COLOPHON ── */
+  .colophon {
+    background: linear-gradient(160deg, var(--purple-soft) 0%, var(--cream) 100%);
+    text-align: center;
+    padding: 56px 24px;
+    border-top: 1px solid var(--border-gold);
+  }
+
+  .colophon-deco {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .colophon-deco::before,
+  .colophon-deco::after {
+    content: '';
+    width: 48px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold-pale));
+  }
+
+  .colophon-deco::after {
+    background: linear-gradient(to left, transparent, var(--gold-pale));
+  }
+
+  .colophon-deco span {
+    color: var(--gold-pale);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14px;
+  }
+
+  .colophon-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 300;
+    letter-spacing: 0.18em;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+
+  .colophon-logo span { color: var(--gold); }
+
+  .colophon-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--purple-light);
+    letter-spacing: 0.1em;
+    margin-bottom: 20px;
+  }
+
+  .colophon-copy {
+    font-size: 10px;
+    color: var(--text-dim);
+    letter-spacing: 0.12em;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* ── BACK TO TOP ── */
+  .back-top {
+    position: fixed;
+    bottom: 24px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background: var(--white);
+    border: 1px solid var(--border-gold);
+    border-radius: 50%;
+    color: var(--gold);
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s, background 0.2s;
+    z-index: 100;
+    font-family: 'Cormorant Garamond', serif;
+    box-shadow: 0 2px 16px rgba(139,123,174,0.12);
+  }
+
+  .back-top:hover { background: var(--purple-soft); }
+  .back-top.visible { opacity: 1; }
 </style>
-
 </head>
 <body>
 
 <!-- HERO -->
-
 <div class="hero">
   <div class="hero-badge">社内研修用資料</div>
   <div class="hero-logo">CHURA<span>BITA</span></div>
@@ -737,7 +734,6 @@ box-shadow: 0 2px 16px rgba(139,123,174,0.12);
 </div>
 
 <!-- TOC -->
-
 <nav class="toc">
   <div class="toc-title">Contents</div>
   <div class="toc-grid">
@@ -757,7 +753,6 @@ box-shadow: 0 2px 16px rgba(139,123,174,0.12);
 </nav>
 
 <!-- S1 -->
-
 <section id="s1">
   <div class="reveal">
     <div class="section-num">01</div>
@@ -772,7 +767,6 @@ box-shadow: 0 2px 16px rgba(139,123,174,0.12);
 </section>
 
 <!-- S2 -->
-
 <section id="s2">
   <div class="reveal">
     <div class="section-num">02</div>
@@ -791,169 +785,152 @@ box-shadow: 0 2px 16px rgba(139,123,174,0.12);
 </section>
 
 <!-- S3 -->
-
 <section id="s3">
   <div class="reveal">
     <div class="section-num">03</div>
     <h2 class="section-title">成分解説</h2>
     <p>1日7粒あたりの配合量と各成分の役割を5つのカテゴリに整理しました。</p>
 
-```
-<div class="category-badge">① 美肌と粘膜の健康</div>
-<table class="ing-table">
-  <tr><th>成分名</th><th>配合量</th><th>効果・特徴</th></tr>
-  <tr><td>ビタミンB2</td><td>50mg</td><td>「皮膚と粘膜のビタミン」と呼ばれ、肌荒れ・口内炎・ニキビの予防に役立ち、ターンオーバーをサポート</td></tr>
-  <tr><td>ビタミンB6</td><td>40mg</td><td>タンパク質の代謝を助けるため、ハリのある肌や健康な髪・爪を作るのに欠かせない</td></tr>
-  <tr><td>ビオチン</td><td>500μg</td><td>「美容ビタミン」として知られ、コラーゲン生成を助け、髪のツヤ・地肌・粘膜の健康を維持。基準値の10倍配合</td></tr>
-</table>
+    <div class="category-badge">① 美肌と粘膜の健康</div>
+    <table class="ing-table">
+      <tr><th>成分名</th><th>配合量</th><th>効果・特徴</th></tr>
+      <tr><td>ビタミンB2</td><td>50mg</td><td>「皮膚と粘膜のビタミン」と呼ばれ、肌荒れ・口内炎・ニキビの予防に役立ち、ターンオーバーをサポート</td></tr>
+      <tr><td>ビタミンB6</td><td>40mg</td><td>タンパク質の代謝を助けるため、ハリのある肌や健康な髪・爪を作るのに欠かせない</td></tr>
+      <tr><td>ビオチン</td><td>500μg</td><td>「美容ビタミン」として知られ、コラーゲン生成を助け、髪のツヤ・地肌・粘膜の健康を維持。基準値の10倍配合</td></tr>
+    </table>
 
-<div class="category-badge">② 鉄分不足と血流（貧血対策）</div>
-<table class="ing-table">
-  <tr><th>成分名</th><th>配合量</th><th>効果・特徴</th></tr>
-  <tr><td>ヘム鉄</td><td>7mg</td><td>肉・魚由来の吸収率が高い鉄分。胃への負担がほぼなく継続しやすい。貧血・顔色の悪さ・だるさのケアに</td></tr>
-  <tr><td>葉酸</td><td>500μg</td><td>ヘム鉄と組み合わせることで赤血球の生成を助ける。妊娠中・妊活中の方にも対応</td></tr>
-  <tr><td>ビタミンB12</td><td>200μg</td><td>葉酸とともに「血を作るビタミン」として働き、質の良い血液づくりをサポート</td></tr>
-</table>
+    <div class="category-badge">② 鉄分不足と血流（貧血対策）</div>
+    <table class="ing-table">
+      <tr><th>成分名</th><th>配合量</th><th>効果・特徴</th></tr>
+      <tr><td>ヘム鉄</td><td>7mg</td><td>肉・魚由来の吸収率が高い鉄分。胃への負担がほぼなく継続しやすい。貧血・顔色の悪さ・だるさのケアに</td></tr>
+      <tr><td>葉酸</td><td>500μg</td><td>ヘム鉄と組み合わせることで赤血球の生成を助ける。妊娠中・妊活中の方にも対応</td></tr>
+      <tr><td>ビタミンB12</td><td>200μg</td><td>葉酸とともに「血を作るビタミン」として働き、質の良い血液づくりをサポート</td></tr>
+    </table>
 
-<div class="category-badge">③ ホルモンバランスと心の安定</div>
-<table class="ing-table">
-  <tr><th>成分名</th><th>配合量</th><th>効果・特徴</th></tr>
-  <tr><td>ビタミンB6</td><td>40mg</td><td>PMS（月経前症候群）のイライラや気分の落ち込みを和らげる働きがあるとして注目されている</td></tr>
-  <tr><td>ナイアシン</td><td>200mg</td><td>脳内物質の生成に関わり、精神的な安定を維持するのを助ける</td></tr>
-</table>
+    <div class="category-badge">③ ホルモンバランスと心の安定</div>
+    <table class="ing-table">
+      <tr><th>成分名</th><th>配合量</th><th>効果・特徴</th></tr>
+      <tr><td>ビタミンB6</td><td>40mg</td><td>PMS（月経前症候群）のイライラや気分の落ち込みを和らげる働きがあるとして注目されている</td></tr>
+      <tr><td>ナイアシン</td><td>200mg</td><td>脳内物質の生成に関わり、精神的な安定を維持するのを助ける</td></tr>
+    </table>
 
-<div class="category-badge">④ アンチエイジングと透明感</div>
-<table class="ing-table">
-  <tr><th>成分名</th><th>配合量</th><th>効果・特徴</th></tr>
-  <tr><td>ビタミンC</td><td>1,000mg</td><td>強力な抗酸化作用があり、紫外線によるシミの元（メラニン）を抑えるほか、肌の弾力を保つコラーゲン合成に必須</td></tr>
-</table>
+    <div class="category-badge">④ アンチエイジングと透明感</div>
+    <table class="ing-table">
+      <tr><th>成分名</th><th>配合量</th><th>効果・特徴</th></tr>
+      <tr><td>ビタミンC</td><td>1,000mg</td><td>強力な抗酸化作用があり、紫外線によるシミの元（メラニン）を抑えるほか、肌の弾力を保つコラーゲン合成に必須</td></tr>
+    </table>
 
-<div class="category-badge">⑤ 忙しい毎日の疲労回復</div>
-<table class="ing-table">
-  <tr><th>成分名</th><th>配合量</th><th>効果・特徴</th></tr>
-  <tr><td>パントテン酸</td><td>200mg</td><td>別名「抗ストレスビタミン」。副腎皮質ホルモンの合成を助け、ストレスに負けない体づくりをサポート</td></tr>
-  <tr><td>ビタミンB1</td><td>50mg</td><td>糖質をエネルギーに変える。甘いものを食べた後のリカバリーや、活動的な毎日のエネルギー源に</td></tr>
-</table>
+    <div class="category-badge">⑤ 忙しい毎日の疲労回復</div>
+    <table class="ing-table">
+      <tr><th>成分名</th><th>配合量</th><th>効果・特徴</th></tr>
+      <tr><td>パントテン酸</td><td>200mg</td><td>別名「抗ストレスビタミン」。副腎皮質ホルモンの合成を助け、ストレスに負けない体づくりをサポート</td></tr>
+      <tr><td>ビタミンB1</td><td>50mg</td><td>糖質をエネルギーに変える。甘いものを食べた後のリカバリーや、活動的な毎日のエネルギー源に</td></tr>
+    </table>
 
-<div class="subsection-title">総合評価</div>
-<p>チュラビタは単なるマルチビタミンではなく、「エネルギー代謝」と「鉄分補給」に重点を置いたパワフルな配合のサプリメントです。特に「ヘム鉄＋葉酸＋ビタミンB12」という血液ケアに重要な成分がしっかり入っている点が大きな強みです。</p>
-<div class="note">※ビタミンB群は黄金バランスで配合。このバランスが、チュラビタの強みです。</div>
-```
-
+    <div class="subsection-title">総合評価</div>
+    <p>チュラビタは単なるマルチビタミンではなく、「エネルギー代謝」と「鉄分補給」に重点を置いたパワフルな配合のサプリメントです。特に「ヘム鉄＋葉酸＋ビタミンB12」という血液ケアに重要な成分がしっかり入っている点が大きな強みです。</p>
+    <div class="note">※ビタミンB群は黄金バランスで配合。このバランスが、チュラビタの強みです。</div>
   </div>
 </section>
 
 <!-- COLUMN 1 -->
-
 <section id="c1">
   <div class="reveal">
     <div class="category-badge" style="background:var(--cream); border-color:var(--border-gold); color:var(--gold);">Column 01</div>
     <h2 class="section-title">そもそもビタミンとは</h2>
     <p>ビタミンとは、三大栄養素の代謝を助け、健康維持に不可欠な微量の有機化合物です。体内でほぼ合成できないため食事から摂取する必要があり、全部で13種類存在します。</p>
 
-```
-<div class="subsection-title">水溶性と脂溶性の違い</div>
-<table class="ing-table">
-  <tr><th>分類</th><th>種類</th><th>特徴</th></tr>
-  <tr><td>水溶性（9種類）</td><td>B群＋C</td><td>水に溶けやすく尿として排出。過剰摂取の心配は少ないが、こまめな摂取が必要</td></tr>
-  <tr><td>脂溶性（4種類）</td><td>A・D・E・K</td><td>脂肪組織や肝臓に蓄えられる。サプリの摂りすぎで過剰症のリスクあり</td></tr>
-</table>
+    <div class="subsection-title">水溶性と脂溶性の違い</div>
+    <table class="ing-table">
+      <tr><th>分類</th><th>種類</th><th>特徴</th></tr>
+      <tr><td>水溶性（9種類）</td><td>B群＋C</td><td>水に溶けやすく尿として排出。過剰摂取の心配は少ないが、こまめな摂取が必要</td></tr>
+      <tr><td>脂溶性（4種類）</td><td>A・D・E・K</td><td>脂肪組織や肝臓に蓄えられる。サプリの摂りすぎで過剰症のリスクあり</td></tr>
+    </table>
 
-<div class="subsection-title">不足するとどうなる？</div>
-<table class="ing-table">
-  <tr><th>ビタミン</th><th colspan="2">不足すると…</th></tr>
-  <tr><td>B1</td><td colspan="2">疲れやすい・集中力低下・脚気</td></tr>
-  <tr><td>B2</td><td colspan="2">口内炎・肌荒れ・目の充血</td></tr>
-  <tr><td>C</td><td colspan="2">肌荒れ・免疫力低下</td></tr>
-  <tr><td>D</td><td colspan="2">骨の弱化・免疫機能の低下</td></tr>
-</table>
-```
-
+    <div class="subsection-title">不足するとどうなる？</div>
+    <table class="ing-table">
+      <tr><th>ビタミン</th><th colspan="2">不足すると…</th></tr>
+      <tr><td>B1</td><td colspan="2">疲れやすい・集中力低下・脚気</td></tr>
+      <tr><td>B2</td><td colspan="2">口内炎・肌荒れ・目の充血</td></tr>
+      <tr><td>C</td><td colspan="2">肌荒れ・免疫力低下</td></tr>
+      <tr><td>D</td><td colspan="2">骨の弱化・免疫機能の低下</td></tr>
+    </table>
   </div>
 </section>
 
 <!-- COLUMN 2 -->
-
 <section id="c2">
   <div class="reveal">
     <div class="category-badge" style="background:var(--cream); border-color:var(--border-gold); color:var(--gold);">Column 02</div>
     <h2 class="section-title">ビオチンとは</h2>
     <p>ビオチンは「美容ビタミン」とも呼ばれる水溶性ビタミンの一種。チュラビタには栄養素等表示基準値の<strong style="color:var(--purple)">10倍にあたる500μg</strong>を配合しています。</p>
 
-```
-<div class="subsection-title">主な働き</div>
-<div class="biotin-cards">
-  <div class="biotin-card">
-    <div class="biotin-label">コラーゲン生成</div>
-    <div class="biotin-body">肌の弾力を保つコラーゲンの合成を助け、ハリ・ツヤのある肌へ</div>
-  </div>
-  <div class="biotin-card">
-    <div class="biotin-label">髪・頭皮ケア</div>
-    <div class="biotin-body">髪のツヤや地肌の健康を保つのに寄与。抜け毛・薄毛が気になる方にも</div>
-  </div>
-  <div class="biotin-card">
-    <div class="biotin-label">爪の強化</div>
-    <div class="biotin-body">割れやすい・欠けやすい爪のケアに役立つ</div>
-  </div>
-  <div class="biotin-card">
-    <div class="biotin-label">粘膜の健康維持</div>
-    <div class="biotin-body">口内炎・肌荒れ・アトピーなど粘膜トラブルの改善をサポート</div>
-  </div>
-  <div class="biotin-card">
-    <div class="biotin-label">代謝サポート</div>
-    <div class="biotin-body">三大栄養素の代謝に関わり、エネルギーを効率よく生み出す</div>
-  </div>
-</div>
+    <div class="subsection-title">主な働き</div>
+    <div class="biotin-cards">
+      <div class="biotin-card">
+        <div class="biotin-label">コラーゲン生成</div>
+        <div class="biotin-body">肌の弾力を保つコラーゲンの合成を助け、ハリ・ツヤのある肌へ</div>
+      </div>
+      <div class="biotin-card">
+        <div class="biotin-label">髪・頭皮ケア</div>
+        <div class="biotin-body">髪のツヤや地肌の健康を保つのに寄与。抜け毛・薄毛が気になる方にも</div>
+      </div>
+      <div class="biotin-card">
+        <div class="biotin-label">爪の強化</div>
+        <div class="biotin-body">割れやすい・欠けやすい爪のケアに役立つ</div>
+      </div>
+      <div class="biotin-card">
+        <div class="biotin-label">粘膜の健康維持</div>
+        <div class="biotin-body">口内炎・肌荒れ・アトピーなど粘膜トラブルの改善をサポート</div>
+      </div>
+      <div class="biotin-card">
+        <div class="biotin-label">代謝サポート</div>
+        <div class="biotin-body">三大栄養素の代謝に関わり、エネルギーを効率よく生み出す</div>
+      </div>
+    </div>
 
-<div class="subsection-title">こんな方に特におすすめ</div>
-<ul>
-  <li>肌荒れ・ニキビ・アトピーが気になる方</li>
-  <li>髪のツヤがなくなってきた・抜け毛が気になる方</li>
-  <li>爪が割れやすい・弱い方</li>
-  <li>口内炎が繰り返しできる方</li>
-</ul>
-<div class="note">水溶性のため過剰摂取の心配が少なく、毎日継続して飲んでいただけます。</div>
-```
-
+    <div class="subsection-title">こんな方に特におすすめ</div>
+    <ul>
+      <li>肌荒れ・ニキビ・アトピーが気になる方</li>
+      <li>髪のツヤがなくなってきた・抜け毛が気になる方</li>
+      <li>爪が割れやすい・弱い方</li>
+      <li>口内炎が繰り返しできる方</li>
+    </ul>
+    <div class="note">水溶性のため過剰摂取の心配が少なく、毎日継続して飲んでいただけます。</div>
   </div>
 </section>
 
 <!-- COLUMN 3 -->
-
 <section id="c3">
   <div class="reveal">
     <div class="category-badge" style="background:var(--cream); border-color:var(--border-gold); color:var(--gold);">Column 03</div>
     <h2 class="section-title">ヘム鉄と非ヘム鉄の違い</h2>
     <p>鉄分には「ヘム鉄」と「非ヘム鉄」の2種類があります。チュラビタが採用しているのはヘム鉄です。</p>
 
-```
-<table class="comp-table">
-  <tr>
-    <th>比較項目</th>
-    <th>ヘム鉄<br>（チュラビタ）</th>
-    <th>非ヘム鉄<br>（一般的）</th>
-  </tr>
-  <tr><td>原料</td><td>肉・魚由来</td><td>野菜・大豆由来</td></tr>
-  <tr><td>吸収率</td><td>約15〜35%</td><td>約2〜5%</td></tr>
-  <tr><td>胃への負担</td><td>ほぼなし</td><td>胃痛・むかつきが起きやすい</td></tr>
-  <tr><td>飲みやすさ</td><td>継続しやすい</td><td>胃が弱い方は飲みづらいことも</td></tr>
-  <tr><td>鉄臭さ</td><td>少ない</td><td>独特の臭さが気になる場合も</td></tr>
-</table>
+    <table class="comp-table">
+      <tr>
+        <th>比較項目</th>
+        <th>ヘム鉄<br>（チュラビタ）</th>
+        <th>非ヘム鉄<br>（一般的）</th>
+      </tr>
+      <tr><td>原料</td><td>肉・魚由来</td><td>野菜・大豆由来</td></tr>
+      <tr><td>吸収率</td><td>約15〜35%</td><td>約2〜5%</td></tr>
+      <tr><td>胃への負担</td><td>ほぼなし</td><td>胃痛・むかつきが起きやすい</td></tr>
+      <tr><td>飲みやすさ</td><td>継続しやすい</td><td>胃が弱い方は飲みづらいことも</td></tr>
+      <tr><td>鉄臭さ</td><td>少ない</td><td>独特の臭さが気になる場合も</td></tr>
+    </table>
 
-<div class="subsection-title">こんな方に特におすすめ</div>
-<ul>
-  <li>貧血気味・顔色が悪い・だるさが続く方</li>
-  <li>生理前後に体がしんどくなる方</li>
-  <li>以前の鉄サプリで胃が痛くなった経験がある方</li>
-  <li>妊娠中・妊活中で鉄分を補いたい方</li>
-</ul>
-```
-
+    <div class="subsection-title">こんな方に特におすすめ</div>
+    <ul>
+      <li>貧血気味・顔色が悪い・だるさが続く方</li>
+      <li>生理前後に体がしんどくなる方</li>
+      <li>以前の鉄サプリで胃が痛くなった経験がある方</li>
+      <li>妊娠中・妊活中で鉄分を補いたい方</li>
+    </ul>
   </div>
 </section>
 
 <!-- S4 -->
-
 <section id="s4">
   <div class="reveal">
     <div class="section-num">04</div>
@@ -982,7 +959,6 @@ box-shadow: 0 2px 16px rgba(139,123,174,0.12);
 </section>
 
 <!-- S5 -->
-
 <section id="s5">
   <div class="reveal">
     <div class="section-num">05</div>
@@ -1001,7 +977,6 @@ box-shadow: 0 2px 16px rgba(139,123,174,0.12);
 </section>
 
 <!-- S6 -->
-
 <section id="s6">
   <div class="reveal">
     <div class="section-num">06</div>
@@ -1020,7 +995,6 @@ box-shadow: 0 2px 16px rgba(139,123,174,0.12);
 </section>
 
 <!-- S7 -->
-
 <section id="s7">
   <div class="reveal">
     <div class="section-num">07</div>
@@ -1050,7 +1024,6 @@ box-shadow: 0 2px 16px rgba(139,123,174,0.12);
 </section>
 
 <!-- S8 -->
-
 <section id="s8">
   <div class="reveal">
     <div class="section-num">08</div>
@@ -1087,7 +1060,6 @@ box-shadow: 0 2px 16px rgba(139,123,174,0.12);
 </section>
 
 <!-- S9 -->
-
 <section id="s9">
   <div class="reveal">
     <div class="section-num">09</div>
@@ -1114,7 +1086,6 @@ box-shadow: 0 2px 16px rgba(139,123,174,0.12);
 </section>
 
 <!-- COLOPHON -->
-
 <div class="colophon">
   <div class="colophon-deco"><span>✦</span></div>
   <div class="colophon-logo">CHURA<span>BITA</span></div>
@@ -1140,6 +1111,5 @@ box-shadow: 0 2px 16px rgba(139,123,174,0.12);
   const btn = document.getElementById('backTop');
   window.addEventListener('scroll', () => btn.classList.toggle('visible', window.scrollY > 400));
 </script>
-
 </body>
 </html>
