@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>電子印鑑システム</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "Noto Sans JP", "Hiragino Kaku Gothic Pro", sans-serif;
+      background: #f5f5f0;
+      color: #2c2c2c;
+      min-height: 100vh;
+    }
+
+    header {
+      background: #8B2020;
+      color: #fff;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    header h1 { font-size: 1.25rem; font-weight: 700; letter-spacing: 0.05em; }
+    header .badge {
+      background: rgba(255,255,255,0.2);
+      font-size: 0.7rem;
+      padding: 2px 8px;
+      border-radius: 12px;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 24px 16px 60px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      overflow: hidden;
+    }
+    .card-header {
+      background: #f9f5f0;
+      border-bottom: 1px solid #e8e0d8;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .step-badge {
+      background: #8B2020;
+      color: #fff;
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.8rem; font-weight: 700; flex-shrink: 0;
+    }
+    .card-header h2 { font-size: 1rem; font-weight: 700; }
+    .card-body { padding: 20px; }
+
+    /* ── STEP 1: 印鑑作成 ── */
+    .lines-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .line-input {
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      padding: 8px 12px;
+      font-size: 1rem;
+      font-family: inherit;
+    }
+    .line-input:focus { outline: none; border-color: #8B2020; }
+
+    .btn-row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+    .btn {
+      padding: 9px 20px;
+      border: none;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.15s, background 0.15s;
+    }
+    .btn:disabled { opacity: 0.45; cursor: not-allowed; }
+    .btn-primary { background: #8B2020; color: #fff; }
+    .btn-primary:not(:disabled):hover { background: #a02525; }
+    .btn-secondary { background: #eee; color: #444; }
+    .btn-secondary:not(:disabled):hover { background: #ddd; }
+    .btn-success { background: #1a7a3c; color: #fff; font-size: 1rem; padding: 12px 28px; }
+    .btn-success:not(:disabled):hover { background: #1e8f47; }
+
+    .stamp-preview-box {
+      margin-top: 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    #stamp-preview-img {
+      width: 100px; height: 100px;
+      object-fit: contain;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      background: #fafafa;
+      display: none;
+    }
+
+    /* ── STEP 2: PDF upload ── */
+    #upload-area {
+      border: 2px dashed #ccc;
+      border-radius: 10px;
+      padding: 40px 20px;
+      text-align: center;
+      cursor: pointer;
+      color: #888;
+      transition: border-color 0.15s, background 0.15s;
+      font-size: 0.95rem;
+    }
+    #upload-area:hover, #upload-area.drag-over {
+      border-color: #8B2020;
+      background: #fdf7f7;
+      color: #8B2020;
+    }
+
+    /* ── STEP 3: 押印 ── */
+    #stamp-section { display: none; }
+
+    .page-nav {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+    #page-info { font-size: 0.9rem; color: #666; min-width: 60px; text-align: center; }
+
+    #preview-wrapper {
+      position: relative;
+      display: inline-block;
+      cursor: crosshair;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      overflow: hidden;
+      max-width: 100%;
+      touch-action: none;
+    }
+    #preview-img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+    #stamp-overlay {
+      position: absolute;
+      display: none;
+      pointer-events: none;
+      opacity: 0.65;
+      background-image: url('/api/stamp-preview');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    .placement-hint {
+      font-size: 0.82rem;
+      color: #888;
+      margin-top: 8px;
+    }
+
+    .apply-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+    .apply-row label { font-size: 0.9rem; cursor: pointer; display: flex; align-items: center; gap: 6px; }
+
+    /* ── STEP 4: Download ── */
+    #download-section { display: none; }
+    #download-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+    .download-icon { font-size: 1.2rem; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>電子印鑑システム</h1>
+  <span class="badge">CHURABITA</span>
+</header>
+
+<main>
+
+  <!-- STEP 1: 印鑑作成 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="step-badge">1</div>
+      <h2>印鑑を作成する</h2>
+    </div>
+    <div class="card-body">
+      <p style="font-size:0.85rem; color:#666; margin-bottom:12px;">
+        縦書きで表示するテキストを入力してください（列ごとに1つ）。
+        「＋列を追加」で複数列にできます。
+      </p>
+      <div class="lines-wrapper" id="lines-container">
+        <input type="text" class="line-input" placeholder="例: 株式会社チュラビタ" value="株式会社チュラビタ">
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-secondary" id="add-line-btn">＋列を追加</button>
+        <button class="btn btn-primary" id="create-stamp-btn">印鑑を作成</button>
+      </div>
+      <div class="stamp-preview-box">
+        <img id="stamp-preview-img" alt="印鑑プレビュー">
+        <p id="stamp-created-msg" style="display:none; font-size:0.88rem; color:#1a7a3c; font-weight:600;">
+          ✓ 印鑑を作成しました
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 2: PDFアップロード -->
+  <div class="card">
+    <div class="card-header">
+      <div class="step-badge">2</div>
+      <h2>PDFをアップロードする</h2>
+    </div>
+    <div class="card-body">
+      <div id="upload-area">
+        クリックまたはドラッグ&amp;ドロップでPDFを選択
+      </div>
+      <input type="file" id="pdf-input" accept=".pdf" style="display:none">
+    </div>
+  </div>
+
+  <!-- STEP 3: 押印位置を指定 -->
+  <div class="card" id="stamp-section">
+    <div class="card-header">
+      <div class="step-badge">3</div>
+      <h2>押印位置をタップして指定する</h2>
+    </div>
+    <div class="card-body">
+      <div class="page-nav">
+        <button class="btn btn-secondary" id="prev-page-btn" disabled>◀ 前へ</button>
+        <span id="page-info">1 / 1</span>
+        <button class="btn btn-secondary" id="next-page-btn" disabled>次へ ▶</button>
+      </div>
+      <div id="preview-wrapper">
+        <img id="preview-img" alt="PDFプレビュー">
+        <div id="stamp-overlay"></div>
+      </div>
+      <p class="placement-hint">↑ 印鑑を押したい位置をクリックまたはタップしてください</p>
+
+      <div class="apply-row">
+        <label>
+          <input type="checkbox" id="apply-all-check">
+          全ページに押印する
+        </label>
+        <button class="btn btn-primary" id="do-stamp-btn" disabled>押印する</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 4: ダウンロード -->
+  <div class="card" id="download-section">
+    <div class="card-header">
+      <div class="step-badge">4</div>
+      <h2>押印済みPDFをダウンロード</h2>
+    </div>
+    <div class="card-body" style="text-align:center; padding: 32px 20px;">
+      <a id="download-link" href="#" class="btn btn-success">
+        <span class="download-icon">⬇</span> stamped.pdf をダウンロード
+      </a>
+    </div>
+  </div>
+
+</main>
+
+<script src="/static/app.js"></script>
+</body>
+</html>
