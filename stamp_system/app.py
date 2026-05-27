@@ -6,28 +6,44 @@ from flask import Flask, jsonify, render_template, request, send_file
 from pdf2image import convert_from_path
 
 from stamp_creator import create_kaku_in, save_stamp
-from pdf_stamper import stamp_pdf
+from pdf_stamper import stamp_pdf, find_stamp_position
 
 app = Flask(__name__)
 
-UPLOAD_DIR = Path(__file__).parent / "uploads"
+BASE_DIR = Path(__file__).parent
+UPLOAD_DIR = BASE_DIR / "uploads"
 UPLOAD_DIR.mkdir(exist_ok=True)
 
 STAMP_PNG = UPLOAD_DIR / "stamp.png"
+SAMPLE_PDF = BASE_DIR / "sample_delivery.pdf"
+
+ALLOWED_IMAGE_EXT = {".png", ".jpg", ".jpeg", ".gif", ".bmp", ".webp"}
 
 
 def _allowed_pdf(filename: str) -> bool:
     return filename.lower().endswith(".pdf")
 
 
+def _allowed_image(filename: str) -> bool:
+    return Path(filename).suffix.lower() in ALLOWED_IMAGE_EXT
+
+
+# ─────────────────────────────────────────────
+#  Pages
+# ─────────────────────────────────────────────
+
 @app.route("/")
 def index():
     return render_template("index.html")
 
 
+# ─────────────────────────────────────────────
+#  Stamp creation (text → generate)
+# ─────────────────────────────────────────────
+
 @app.route("/api/create-stamp", methods=["POST"])
 def api_create_stamp():
-    """印鑑画像を生成して保存する"""
+    """テキストから角印画像を生成して保存する"""
     data = request.get_json(force=True)
     lines = data.get("lines", ["株式会社", "チュラビタ"])
     size_px = int(data.get("size_px", 400))
@@ -37,9 +53,43 @@ def api_create_stamp():
     return jsonify({"ok": True, "message": "印鑑を作成しました"})
 
 
+# ─────────────────────────────────────────────
+#  Stamp upload (existing image)
+# ─────────────────────────────────────────────
+
+@app.route("/api/upload-stamp-image", methods=["POST"])
+def api_upload_stamp_image():
+    """既存の印鑑画像（PNG/JPG等）をアップロードして保存する"""
+    if "stamp" not in request.files:
+        return jsonify({"ok": False, "error": "ファイルがありません"}), 400
+
+    f = request.files["stamp"]
+    if not _allowed_image(f.filename):
+        return jsonify({"ok": False, "error": "PNG/JPG形式の画像ファイルを選択してください"}), 400
+
+    # Pillowでいったん開いてPNGとして保存（透過対応）
+    from PIL import Image
+    img = Image.open(f.stream).convert("RGBA")
+    img.save(str(STAMP_PNG), "PNG")
+
+    return jsonify({"ok": True, "message": "印鑑画像をアップロードしました"})
+
+
+@app.route("/api/stamp-preview")
+def api_stamp_preview():
+    """生成済み印鑑画像を返す（オーバーレイ表示用）"""
+    if not STAMP_PNG.exists():
+        return "Not found", 404
+    return send_file(str(STAMP_PNG), mimetype="image/png")
+
+
+# ─────────────────────────────────────────────
+#  PDF upload & preview
+# ─────────────────────────────────────────────
+
 @app.route("/api/upload", methods=["POST"])
 def api_upload():
-    """PDFをアップロードし、1ページ目のプレビュー画像をBase64で返す"""
+    """PDFをアップロードし、全ページのプレビューURLと印位置を返す"""
     if "pdf" not in request.files:
         return jsonify({"ok": False, "error": "ファイルがありません"}), 400
 
@@ -51,28 +101,40 @@ def api_upload():
     pdf_path = UPLOAD_DIR / f"{session_id}.pdf"
     f.save(str(pdf_path))
 
-    # 全ページをプレビュー用PNG に変換
+    return _process_pdf(session_id, pdf_path)
+
+
+@app.route("/api/use-sample", methods=["POST"])
+def api_use_sample():
+    """サンプル納品書PDFを使用する"""
+    if not SAMPLE_PDF.exists():
+        return jsonify({"ok": False, "error": "サンプルPDFが見つかりません"}), 404
+
+    session_id = uuid.uuid4().hex
+    pdf_path = UPLOAD_DIR / f"{session_id}.pdf"
+    import shutil
+    shutil.copy(str(SAMPLE_PDF), str(pdf_path))
+
+    return _process_pdf(session_id, pdf_path)
+
+
+def _process_pdf(session_id: str, pdf_path: Path) -> object:
+    """PDFをプレビュー変換し、印位置を検出してレスポンスを返す"""
     images = convert_from_path(str(pdf_path), dpi=120)
-    preview_paths = []
     for idx, img in enumerate(images):
         preview_path = UPLOAD_DIR / f"{session_id}_page{idx}.png"
         img.save(str(preview_path), "PNG")
-        preview_paths.append(f"/api/preview/{session_id}/{idx}")
+
+    # 「印」の位置を自動検出
+    detected = find_stamp_position(str(pdf_path), keyword="印")
 
     return jsonify({
         "ok": True,
         "session_id": session_id,
         "pages": len(images),
-        "previews": preview_paths,
+        "previews": [f"/api/preview/{session_id}/{i}" for i in range(len(images))],
+        "detected_stamp_pos": detected,   # {"x_ratio", "y_ratio", "page"} or null
     })
-
-
-@app.route("/api/stamp-preview")
-def api_stamp_preview():
-    """生成済み印鑑画像を返す（オーバーレイ表示用）"""
-    if not STAMP_PNG.exists():
-        return "Not found", 404
-    return send_file(str(STAMP_PNG), mimetype="image/png")
 
 
 @app.route("/api/preview/<session_id>/<int:page_idx>")
@@ -84,17 +146,21 @@ def api_preview(session_id: str, page_idx: int):
     return send_file(str(preview_path), mimetype="image/png")
 
 
+# ─────────────────────────────────────────────
+#  Stamp application
+# ─────────────────────────────────────────────
+
 @app.route("/api/stamp", methods=["POST"])
 def api_stamp():
     """指定位置に押印してPDFを返す"""
     if not STAMP_PNG.exists():
-        return jsonify({"ok": False, "error": "先に印鑑を作成してください"}), 400
+        return jsonify({"ok": False, "error": "先に印鑑を準備してください"}), 400
 
     data = request.get_json(force=True)
     session_id = data.get("session_id")
     x_ratio = float(data.get("x_ratio", 0.5))
     y_ratio = float(data.get("y_ratio", 0.5))
-    page_index = data.get("page_index")  # None = 全ページ
+    page_index = data.get("page_index")
     if page_index is not None:
         page_index = int(page_index)
 

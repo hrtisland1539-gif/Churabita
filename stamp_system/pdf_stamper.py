@@ -1,6 +1,33 @@
 import fitz  # PyMuPDF
 
 
+def find_stamp_position(pdf_path: str, keyword: str = "印") -> dict | None:
+    """
+    PDF内でキーワード（デフォルト「印」）を検索し、
+    その位置をページサイズで正規化した座標として返す。
+
+    Returns:
+        {"x_ratio": float, "y_ratio": float, "page": int} or None
+    """
+    doc = fitz.open(pdf_path)
+    for page_idx, page in enumerate(doc):
+        hits = page.search_for(keyword)
+        if hits:
+            rect = hits[0]  # 最初にヒットした位置
+            pw = page.rect.width
+            ph = page.rect.height
+            cx = (rect.x0 + rect.x1) / 2
+            cy = (rect.y0 + rect.y1) / 2
+            doc.close()
+            return {
+                "x_ratio": cx / pw,
+                "y_ratio": cy / ph,
+                "page": page_idx,
+            }
+    doc.close()
+    return None
+
+
 def stamp_pdf(
     input_path: str,
     stamp_png_path: str,
@@ -28,7 +55,7 @@ def stamp_pdf(
         ph = page.rect.height
         stamp_size = pw * stamp_size_ratio
 
-        # クリック位置を中心として印鑑を配置（PDF座標は左上原点）
+        # クリック位置を中心として印鑑を配置（PyMuPDF は左上原点・Y軸下向き）
         x0 = x_ratio * pw - stamp_size / 2
         y0 = y_ratio * ph - stamp_size / 2
         x1 = x0 + stamp_size
