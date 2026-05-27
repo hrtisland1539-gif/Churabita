@@ -34,7 +34,7 @@ def stamp_pdf(
     output_path: str,
     x_ratio: float,
     y_ratio: float,
-    stamp_size_ratio: float = 0.15,
+    stamp_size_ratio: float = 0.10,
     page_index: int | None = None,
 ) -> None:
     """

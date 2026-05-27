@@ -33,6 +33,8 @@ const stampOverlay    = document.getElementById("stamp-overlay");
 const detectedMarker  = document.getElementById("detected-marker");
 const pageInfo        = document.getElementById("page-info");
 const prevPageBtn     = document.getElementById("prev-page-btn");
+const sizeSlider      = document.getElementById("size-slider");
+const sizeValue       = document.getElementById("size-value");
 const nextPageBtn     = document.getElementById("next-page-btn");
 const autoHint        = document.getElementById("auto-hint");
 
@@ -227,15 +229,37 @@ function _handlePlacement(clientX, clientY) {
   _updateDoStampBtn();
 }
 
+/** スライダー値(5〜25) をオーバーレイpxサイズに変換 */
+function _sliderToOverlayPx() {
+  const ratio = parseInt(sizeSlider.value) / 100;        // 0.05〜0.25
+  const rect  = previewWrapper.getBoundingClientRect();
+  return rect.width * ratio;
+}
+
 function _placeStampOverlay(xRatio, yRatio) {
-  const rect = previewWrapper.getBoundingClientRect();
-  const OVERLAY_SIZE = 80;
-  stampOverlay.style.left    = (xRatio * rect.width  - OVERLAY_SIZE / 2) + "px";
-  stampOverlay.style.top     = (yRatio * rect.height - OVERLAY_SIZE / 2) + "px";
-  stampOverlay.style.width   = OVERLAY_SIZE + "px";
-  stampOverlay.style.height  = OVERLAY_SIZE + "px";
+  const rect        = previewWrapper.getBoundingClientRect();
+  const overlaySize = _sliderToOverlayPx();
+  stampOverlay.style.left    = (xRatio * rect.width  - overlaySize / 2) + "px";
+  stampOverlay.style.top     = (yRatio * rect.height - overlaySize / 2) + "px";
+  stampOverlay.style.width   = overlaySize + "px";
+  stampOverlay.style.height  = overlaySize + "px";
   stampOverlay.style.display = "block";
 }
+
+// ── サイズスライダー ──────────────────────────
+// A4幅 595pt ≈ 210mm → 1pt ≈ 0.353mm → ratio×595pt×0.353mm/pt でmm換算
+function _ratioToMm(ratio) {
+  return Math.round(ratio * 210);  // A4幅210mm基準
+}
+
+sizeSlider.addEventListener("input", () => {
+  const ratio = parseInt(sizeSlider.value) / 100;
+  sizeValue.textContent = `約${_ratioToMm(ratio)}mm`;
+  // オーバーレイが表示中なら位置を保ったままサイズだけ更新
+  if (state.stampPos) {
+    _placeStampOverlay(state.stampPos.xRatio, state.stampPos.yRatio);
+  }
+});
 
 previewWrapper.addEventListener("click", e => _handlePlacement(e.clientX, e.clientY));
 previewWrapper.addEventListener("touchend", e => {
@@ -258,14 +282,17 @@ doStampBtn.addEventListener("click", async () => {
 
   const pageIndex = applyAllCheck.checked ? null : state.currentPage;
 
+  const stampSizeRatio = parseInt(sizeSlider.value) / 100;  // スライダー値 → ratio
+
   const res = await fetch("/api/stamp", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      session_id: state.sessionId,
-      x_ratio:    state.stampPos.xRatio,
-      y_ratio:    state.stampPos.yRatio,
-      page_index: pageIndex,
+      session_id:       state.sessionId,
+      x_ratio:          state.stampPos.xRatio,
+      y_ratio:          state.stampPos.yRatio,
+      stamp_size_ratio: stampSizeRatio,
+      page_index:       pageIndex,
     }),
   });
 

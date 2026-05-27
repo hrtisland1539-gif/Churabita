@@ -242,6 +242,24 @@
       text-decoration: none;
     }
 
+    /* ── Size slider ── */
+    .size-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 14px;
+      flex-wrap: wrap;
+    }
+    .size-row label { font-size: 0.85rem; color: #555; white-space: nowrap; }
+    #size-slider { flex: 1; min-width: 120px; accent-color: #7a1a1a; }
+    #size-value {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #7a1a1a;
+      min-width: 42px;
+      text-align: right;
+    }
+
     /* ── Status msg ── */
     .status-msg {
       font-size: 0.82rem;
@@ -353,6 +371,13 @@
 
       <p class="placement-hint">↑ 押印したい位置をクリック / タップしてください</p>
       <p class="auto-hint" id="auto-hint">✓ 「印」の位置を自動検出しました。そのまま押印するか、別の位置をタップして変更できます。</p>
+
+      <!-- 印鑑サイズスライダー -->
+      <div class="size-row">
+        <label for="size-slider">印鑑サイズ</label>
+        <input type="range" id="size-slider" min="5" max="25" step="1" value="10">
+        <span id="size-value">約21mm</span>
+      </div>
 
       <div class="apply-row">
         <label>

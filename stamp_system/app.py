@@ -192,6 +192,7 @@ def api_stamp():
     session_id = data.get("session_id")
     x_ratio = float(data.get("x_ratio", 0.5))
     y_ratio = float(data.get("y_ratio", 0.5))
+    stamp_size_ratio = float(data.get("stamp_size_ratio", 0.10))  # デフォルト10%≈21mm
     page_index = data.get("page_index")
     if page_index is not None:
         page_index = int(page_index)
@@ -207,6 +208,7 @@ def api_stamp():
         output_path=str(output_path),
         x_ratio=x_ratio,
         y_ratio=y_ratio,
+        stamp_size_ratio=stamp_size_ratio,
         page_index=page_index,
     )
     return send_file(
