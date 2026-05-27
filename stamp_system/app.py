@@ -2,8 +2,10 @@ import os
 import uuid
 from pathlib import Path
 
+import numpy as np
 from flask import Flask, jsonify, render_template, request, send_file
 from pdf2image import convert_from_path
+from PIL import Image
 
 from stamp_creator import create_kaku_in, save_stamp
 from pdf_stamper import stamp_pdf, find_stamp_position
@@ -57,9 +59,38 @@ def api_create_stamp():
 #  Stamp upload (existing image)
 # ─────────────────────────────────────────────
 
+def _remove_white_background(img: Image.Image, threshold: int = 210) -> Image.Image:
+    """白背景を透過処理して返す（RGBA変換済み）"""
+    img_rgba = img.convert("RGBA")
+    data = np.array(img_rgba, dtype=np.uint8)
+    r, g, b = data[:, :, 0], data[:, :, 1], data[:, :, 2]
+    white_mask = (r > threshold) & (g > threshold) & (b > threshold)
+    data[white_mask, 3] = 0
+    return Image.fromarray(data, "RGBA")
+
+
+def _crop_to_content(img: Image.Image, padding: int = 10) -> Image.Image:
+    """透明部分を除いた bounding box でクロップする"""
+    data = np.array(img)
+    alpha = data[:, :, 3]
+    rows = np.any(alpha > 10, axis=1)
+    cols = np.any(alpha > 10, axis=0)
+    if not rows.any() or not cols.any():
+        return img
+    rmin, rmax = np.where(rows)[0][[0, -1]]
+    cmin, cmax = np.where(cols)[0][[0, -1]]
+    h, w = data.shape[:2]
+    rmin = max(0, rmin - padding)
+    rmax = min(h, rmax + padding)
+    cmin = max(0, cmin - padding)
+    cmax = min(w, cmax + padding)
+    return img.crop((cmin, rmin, cmax, rmax))
+
+
 @app.route("/api/upload-stamp-image", methods=["POST"])
 def api_upload_stamp_image():
-    """既存の印鑑画像（PNG/JPG等）をアップロードして保存する"""
+    """既存の印鑑画像（PNG/JPG/WebP等）をアップロードして保存する。
+    白背景を自動透過化してから保存する。"""
     if "stamp" not in request.files:
         return jsonify({"ok": False, "error": "ファイルがありません"}), 400
 
@@ -67,12 +98,13 @@ def api_upload_stamp_image():
     if not _allowed_image(f.filename):
         return jsonify({"ok": False, "error": "PNG/JPG形式の画像ファイルを選択してください"}), 400
 
-    # Pillowでいったん開いてPNGとして保存（透過対応）
-    from PIL import Image
-    img = Image.open(f.stream).convert("RGBA")
+    img = Image.open(f.stream)
+    img = _remove_white_background(img)   # 白背景を透過化
+    img = _crop_to_content(img)           # 余白をトリム
+    img = img.resize((400, 400), Image.LANCZOS)
     img.save(str(STAMP_PNG), "PNG")
 
-    return jsonify({"ok": True, "message": "印鑑画像をアップロードしました"})
+    return jsonify({"ok": True, "message": "印鑑画像をアップロードしました（白背景を自動透過化済み）"})
 
 
 @app.route("/api/stamp-preview")
