@@ -1,5 +1,12 @@
 import fitz  # PyMuPDF
 
+# 書類種別ごとのデフォルト押印位置
+# 「印」マークが検出されない場合のフォールバック用
+FALLBACK_POSITIONS = {
+    "receipt": {"x_ratio": 0.874, "y_ratio": 0.228},   # 領収書: 会社情報欄の直下
+    "delivery": {"x_ratio": 0.874, "y_ratio": 0.234},  # 納品書: 「印」マーク位置
+}
+
 
 def find_stamp_position(pdf_path: str, keyword: str = "印") -> dict | None:
     """
